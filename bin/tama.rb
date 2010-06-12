@@ -1,9 +1,9 @@
 #%ruby_path%
 
-# ¡Ö¤¿¤Ş¤Æ¤Ğ¤³¡×version 1.1.66
+# ã€ŒãŸã¾ã¦ã°ã“ã€version 1.1.66
 # Copyright(C) 2000-2001 Hideki Ikemoto
 
-# ¥«¥ì¥ó¥È¥Ç¥£¥ì¥¯¥È¥ê¤ÎÊÑ¹¹
+# ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å¤‰æ›´
 $:.push("./lib")
 if $0.index('/') != nil then
   Dir::chdir $0[0..$0.rindex('/')]
@@ -34,7 +34,7 @@ def usage()
   puts "Usage: tama.rb [--noget] [--local] [--version] [--help] [--check]"
   puts "               [--config-file-name file-name]"
   puts "               [--force] [--verbose] [--debug]"
-  puts "¾Ü¤·¤¤»È¤¤Êı¤Ï 'tama.rb --help'¤ò¼Â¹Ô¤·¤Æ²¼¤µ¤¤¡£"
+  puts "è©³ã—ã„ä½¿ã„æ–¹ã¯ 'tama.rb --help'ã‚’å®Ÿè¡Œã—ã¦ä¸‹ã•ã„ã€‚"
 end
 
 $USAGE = 'usage'
@@ -49,14 +49,14 @@ if $OPT_help == TRUE then
   puts "Usage: tama.rb [--noget] [--local] [--version] [--help] [--check]"
   puts "               [--force] [--verbose] [--debug]"
   puts
-  puts "  --noget              ¹¹¿·¾ğÊó¤ò¼èÆÀ¤»¤º¤Ë½ĞÎÏ¤À¤±¤·¤Ş¤¹¡£"
-  puts "  --local              ¥í¡¼¥«¥ë¥Õ¥¡¥¤¥ë¤Î¤ß¹¹¿·»ş¹ï¤ò¼èÆÀ¤·¤Ş¤¹¡£"
-  puts "  --version            ¥Ğ¡¼¥¸¥ç¥ó¤òÉ½¼¨¤·¤Ş¤¹¡£"
-  puts "  --help               ¤³¤Î¥Ø¥ë¥×¤òÉ½¼¨¤·¤Ş¤¹¡£"
-  puts "  --check              ÀßÄê¥Õ¥¡¥¤¥ë¤Î½ñ¼°¤ò¥Á¥§¥Ã¥¯¤·¤Ş¤¹¡£"
-  puts "  --force              ¹¹¿·»ş¹ï´Ö³Ö¤ÎÊÑ¹¹¤òÌµ¸ú¤Ë¤·¤Æ¥Á¥§¥Ã¥¯¤·¤Ş¤¹¡£"
-  puts "  --verbose            ¾ÜºÙ¤Ê¥á¥Ã¥»¡¼¥¸¤ò½ĞÎÏ¤·¤Ş¤¹¡£"
-  puts "  --debug              ¥Ç¥Ğ¥Ã¥°ÍÑ¤Î¥á¥Ã¥»¡¼¥¸¤ò½ĞÎÏ¤·¤Ş¤¹¡£"
+  puts "  --noget              æ›´æ–°æƒ…å ±ã‚’å–å¾—ã›ãšã«å‡ºåŠ›ã ã‘ã—ã¾ã™ã€‚"
+  puts "  --local              ãƒ­ãƒ¼ã‚«ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã®ã¿æ›´æ–°æ™‚åˆ»ã‚’å–å¾—ã—ã¾ã™ã€‚"
+  puts "  --version            ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚"
+  puts "  --help               ã“ã®ãƒ˜ãƒ«ãƒ—ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚"
+  puts "  --check              è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®æ›¸å¼ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚"
+  puts "  --force              æ›´æ–°æ™‚åˆ»é–“éš”ã®å¤‰æ›´ã‚’ç„¡åŠ¹ã«ã—ã¦ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚"
+  puts "  --verbose            è©³ç´°ãªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºåŠ›ã—ã¾ã™ã€‚"
+  puts "  --debug              ãƒ‡ãƒãƒƒã‚°ç”¨ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºåŠ›ã—ã¾ã™ã€‚"
   exit
 end
 
@@ -66,14 +66,14 @@ if $OPT_config_file_name then
 end
 load $tama_cfg_path
 
-# ¥»¥­¥å¥ê¥Æ¥£¤ò¶¯²½
+# ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£ã‚’å¼·åŒ–
 $SAFE = 1
 
 if $OPT_check == TRUE then
-  puts "¥Á¥§¥Ã¥¯¤ò³«»Ï¤·¤Ş¤¹¡£"
+  puts "ãƒã‚§ãƒƒã‚¯ã‚’é–‹å§‹ã—ã¾ã™ã€‚"
   puts ""
   check_format()
-  puts "¥Á¥§¥Ã¥¯¤¬½ªÎ»¤·¤Ş¤·¤¿¡£"
+  puts "ãƒã‚§ãƒƒã‚¯ãŒçµ‚äº†ã—ã¾ã—ãŸã€‚"
   exit
 end
 
@@ -83,13 +83,13 @@ TAMA_SITES_FILE = "./tmp/_sites.di"
 
 $start = Time::now.to_i
 
-# ¥¿¥¤¥à¥¾¡¼¥ó¤ÎÀßÄê
+# ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã®è¨­å®š
 if $tz == nil then
-  warning("$tz¤¬ÀßÄê¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£")
+  warning("$tzãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚")
   $tz = 'JST'
 end
 
-# ¥¹¥ì¥Ã¥É¿ô¤ÎÀßÄê
+# ã‚¹ãƒ¬ãƒƒãƒ‰æ•°ã®è¨­å®š
 if $max_threads == nil then
   $max_threads = 1
 end
@@ -97,7 +97,7 @@ end
 verbose("Version: #{TAMA::Version}\n")
 verbose("Build: #{TAMA::Build}\n\n")
 
-# ¥ê¥â¡¼¥È¾ğÊó¤ò¼èÆÀ¤¹¤ë¡£
+# ãƒªãƒ¢ãƒ¼ãƒˆæƒ…å ±ã‚’å–å¾—ã™ã‚‹ã€‚
 def get_remote()
   verbose("Get remote files\n\n")
   
@@ -122,7 +122,7 @@ def get_remote()
 end
 
 def get_site(site, cache, remote)
-  # ¥Õ¥¡¥¤¥ëÃµº÷
+  # ãƒ•ã‚¡ã‚¤ãƒ«æ¢ç´¢
   if site.checkurl.file? == TRUE then
     website = site.check_file
     if website.method == "FILE" then
@@ -135,7 +135,7 @@ def get_site(site, cache, remote)
     return website
   end
   
-  # ¥ê¥â¡¼¥È¾ğÊó¤ÎÍøÍÑ
+  # ãƒªãƒ¢ãƒ¼ãƒˆæƒ…å ±ã®åˆ©ç”¨
   if !site.option['NO_REMOTE'] && remote && remote.expires > $start &&
     remote.lastmodified != 0 then
     verbose("URL: #{site.checkurl}\n" +
@@ -143,11 +143,11 @@ def get_site(site, cache, remote)
     return remote
   end
   
-  # --local¤Î»ş¤Ïfile://°Ê³°¥Á¥§¥Ã¥¯¤·¤Ê¤¤
-  # cache¤Ïnil¤¬Æş¤ë¤³¤È¤â¤¢¤ë¤Î¤ÇÃí°Õ¡£
+  # --localã®æ™‚ã¯file://ä»¥å¤–ãƒã‚§ãƒƒã‚¯ã—ãªã„
+  # cacheã¯nilãŒå…¥ã‚‹ã“ã¨ã‚‚ã‚ã‚‹ã®ã§æ³¨æ„ã€‚
   return cache if $OPT_local == TRUE
   
-  # °ìÆü°Ê¾å¹¹¿·¤µ¤ì¤Æ¤¤¤Ê¤¤¾ì¹ç
+  # ä¸€æ—¥ä»¥ä¸Šæ›´æ–°ã•ã‚Œã¦ã„ãªã„å ´åˆ
   if cache then
     lm_days = (Time::now.to_i - cache.lastmodified) / 86400.0
     ld_hours = (Time::now.to_i - cache.lastdetected) / 3600.0
@@ -158,7 +158,7 @@ def get_site(site, cache, remote)
       return cache
     end
     
-    # ftp¤Î¾ì¹ç¤Ï¾ï¤Ë°ìÆü°ì²ó¡£
+    # ftpã®å ´åˆã¯å¸¸ã«ä¸€æ—¥ä¸€å›ã€‚
     if site.checkurl.ftp? == TRUE && ld_hours < 24 &&
       $OPT_force != TRUE then
       verbose("URL: #{site.checkurl}\n" +
@@ -167,7 +167,7 @@ def get_site(site, cache, remote)
     end
   end
   
-  # ftpÃµº÷
+  # ftpæ¢ç´¢
   if site.checkurl.ftp? == TRUE then
     website = site.check_ftp(cache)
     if website.method == "HEAD" then
@@ -180,7 +180,7 @@ def get_site(site, cache, remote)
     return website
   end
   
-  # HEAD¥ê¥¯¥¨¥¹¥È
+  # HEADãƒªã‚¯ã‚¨ã‚¹ãƒˆ
   if !site.option['DI'] && !site.option['GET'] && !site.option['REGEXP'] then
     website = site.check_head(cache)
     if website then
@@ -191,17 +191,17 @@ def get_site(site, cache, remote)
 	verbose("HEAD: #{site.checkurl}\n" +
 	      "    => Error [#{website.code}]\n")
       end
-      # Netscape-Enterprise¤Î»ş¤Ïwebsite¤Ïnil¤òÊÖ¤¹
+      # Netscape-Enterpriseã®æ™‚ã¯websiteã¯nilã‚’è¿”ã™
       return website if website
     end
   end
   
-  # GET¼èÆÀ
+  # GETå–å¾—
   headers = {}
   headers['Referer'] = $referer unless $referer.nil? || $referer.empty?
   http1_get = HTTP1::get(site.checkurl, headers)
   
-  # DI¤Ë¤è¤ëÈ½Äê
+  # DIã«ã‚ˆã‚‹åˆ¤å®š
   if site.option['DI'] then
     website = site.check_di(http1_get, cache)
     if website.method == "GET" then
@@ -214,7 +214,7 @@ def get_site(site, cache, remote)
     return website
   end
   
-  # ¥­¡¼¥ï¡¼¥ÉÈ½Äê
+  # ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰åˆ¤å®š
   if site.option['REGEXP'] then
     website = site.check_keyword(http1_get, cache, site.option['REGEXP'])
     if website then
@@ -235,7 +235,7 @@ def get_site(site, cache, remote)
     end
   end
   
-  # GET¤ÇLast-Modified¤¬¤¢¤ë¾ì¹ç
+  # GETã§Last-ModifiedãŒã‚ã‚‹å ´åˆ
   website = site.check_get(http1_get, cache)
   if website then
     if website.method == "GET" then
@@ -248,7 +248,7 @@ def get_site(site, cache, remote)
     return website
   end
   
-  # LENGTHÈ½Äê
+  # LENGTHåˆ¤å®š
   website = site.check_length(http1_get, cache)
   if cache == nil then
     verbose("Length check: #{site.checkurl}\n" +
@@ -263,7 +263,7 @@ def get_site(site, cache, remote)
   website
 end
 
-# $sites¤Ç»ØÄê¤·¤Æ¤¢¤ë*.cfg¤«¤é*.tama¤Ê¤É¤òºîÀ®¤¹¤ë¡£
+# $sitesã§æŒ‡å®šã—ã¦ã‚ã‚‹*.cfgã‹ã‚‰*.tamaãªã©ã‚’ä½œæˆã™ã‚‹ã€‚
 def out_tama()
   websites = DI::open(TAMA_SITES_FILE)
   
@@ -296,20 +296,20 @@ def out_tama()
   }
 end
 
-# HTML¤Ë½ĞÎÏ¤¹¤ë¡£
+# HTMLã«å‡ºåŠ›ã™ã‚‹ã€‚
 def antenna_out()
   remotes = Remotes::open("./conf/remote.cfg")
   
   $html.each {|basehtml, outhtml|
     out = File::open(outhtml, "w")
     lines = File::open(basehtml).read
-    # $html¤Ç»ØÄê¤µ¤ì¤ë¥Õ¥¡¥¤¥ë¤Ë¤ÏÌäÂêÌµ¤¤¤È²¾Äê
+    # $htmlã§æŒ‡å®šã•ã‚Œã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã«ã¯å•é¡Œç„¡ã„ã¨ä»®å®š
     lines.untaint
     
     out.puts lines.gsub(/<!--tama_output[ \n]((.|\n)*?)-->/) {|match|
       option = attr_split(match)
       if option['suffix'] != nil then
-	warning("#{basehtml}: suffix¤ò»ÈÍÑ¤·¤Æ¤¤¤Ş¤¹¡£format¤ò»È¤¦¤è¤¦¤Ë¤·¤Æ¤¯¤À¤µ¤¤¡£\n")
+	warning("#{basehtml}: suffixã‚’ä½¿ç”¨ã—ã¦ã„ã¾ã™ã€‚formatã‚’ä½¿ã†ã‚ˆã†ã«ã—ã¦ãã ã•ã„ã€‚\n")
       end
       
       if option['method'] == nil then
@@ -343,7 +343,7 @@ if $OPT_noget != TRUE then
     sites.merge!(Sites::open(cfgpath))
   }
   sites_get = Antenna::new
-  # ¥­¥ã¥Ã¥·¥å¾ğÊó¡õ¥ê¥â¡¼¥È¾ğÊó¤ÎÆÉ¤ß¹ş¤ß¡£
+  # ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±ï¼†ãƒªãƒ¢ãƒ¼ãƒˆæƒ…å ±ã®èª­ã¿è¾¼ã¿ã€‚
   begin
     sites_cache = DI::open(TAMA_GET_FILE)
   rescue
@@ -366,8 +366,8 @@ if $OPT_noget != TRUE then
 	  site = sites.shift
 	}
 	
-	# sites.size > 0 ¤À¤±¤É¡¢¼Âºİ¤Ïsites = []¤À¤Ã¤¿¤È¤­¤ò¹ÍÎ¸
-	# (¥¹¥ì¥Ã¥ÉÂĞ±ş¤Î¤¿¤á)
+	# sites.size > 0 ã ã‘ã©ã€å®Ÿéš›ã¯sites = []ã ã£ãŸã¨ãã‚’è€ƒæ…®
+	# (ã‚¹ãƒ¬ãƒƒãƒ‰å¯¾å¿œã®ãŸã‚)
 	if site then
 	  cache = sites_cache.find{|site_cache| site_cache.url == site.url}
 	  remote = sites_remote.find{|site_remote| site_remote.url == site.url}
@@ -398,7 +398,7 @@ if $OPT_noget != TRUE then
   sites_get.save(TAMA_SITES_FILE, "DI")
   
   File::open("./tmp/log", "w") do |f|
-    # ¥í¥°¤ò½ñ¤­¹ş¤à
+    # ãƒ­ã‚°ã‚’æ›¸ãè¾¼ã‚€
     f.puts ""
   end
   verbose("Traffic: #{HTTP1.traffic} bytes\n")
