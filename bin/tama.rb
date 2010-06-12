@@ -48,6 +48,7 @@ if $OPT_version == TRUE then
 end
 
 if $OPT_help == TRUE then
+  puts "#{TAMA::Agent}"
   puts "Usage: tama.rb [--noget] [--local] [--version] [--help] [--check]"
   puts "               [--config-file-name FILE]"
   puts "               [--output-directory-name DIRECTORY]"
@@ -85,8 +86,7 @@ end
 verbose("Temporary directory: #{$tmpdir}\n")
 
 if !File::exists?($tmpdir) || File::ftype($tmpdir) != 'directory' then
-  puts "#{$tmpdir} はディレクトリではありません。"
-  exit
+  abort "#{$tmpdir} はディレクトリではありません。"
 end
 
 if $OPT_output_directory_name then
@@ -96,8 +96,7 @@ end
 verbose("Output directory: #{$outdir}\n")
 
 if !File::exists?($outdir) || File::ftype($outdir) != 'directory' then
-  puts "#{$outdir} はディレクトリではありません。"
-  exit
+  abort "#{$outdir} はディレクトリではありません。"
 end
 
 # セキュリティを強化
