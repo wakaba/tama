@@ -33,7 +33,6 @@ def usage()
   puts "Usage: tama.rb [--noget] [--local] [--version] [--help] [--check]"
   puts "               [--config-file-name FILE]"
   puts "               [--output-directory-name DIRECTORY]"
-  puts "               [--temp-directory-name DIRECTORY]"
   puts "               [--force] [--verbose] [--debug]"
   puts "詳しい使い方は 'tama.rb --help'を実行して下さい。"
 end
@@ -41,7 +40,7 @@ end
 $USAGE = 'usage'
 parseArgs(0, nil, nil, "noget", "local", "version", "debug", "help", "check",
           "config-file-name:", "output-directory-name:",
-          "temp-directory-name:", "force", "verbose")
+          "force", "verbose")
 
 if $OPT_version == TRUE then
   puts "#{TAMA::Version}"
@@ -52,7 +51,6 @@ if $OPT_help == TRUE then
   puts "Usage: tama.rb [--noget] [--local] [--version] [--help] [--check]"
   puts "               [--config-file-name FILE]"
   puts "               [--output-directory-name DIRECTORY]"
-  puts "               [--temp-directory-name DIRECTORY]"
   puts "               [--force] [--verbose] [--debug]"
   puts
   puts "  --noget              更新情報を取得せずに出力だけします。"
@@ -62,7 +60,6 @@ if $OPT_help == TRUE then
   puts "  --check              設定ファイルの書式をチェックします。"
   puts "  --config-file-name FILE           tama.cfg のパスを指定します。"
   puts "  --output-directory-name DIRECTORY 更新情報の出力先を指定します。"
-  puts "  --temp-directory-name DIRECTORY   一時データの出力先を指定します。"
   puts "  --force              更新時刻間隔の変更を無効にしてチェックします。"
   puts "  --verbose            詳細なメッセージを出力します。"
   puts "  --debug              デバッグ用のメッセージを出力します。"
@@ -81,6 +78,14 @@ if !File::exists?($outdir) || File::ftype($outdir) != 'directory' then
 end
 
 $tmpdir = './tmp/'
+
+$tama_cfg_path = "./conf/tama.cfg"
+if $OPT_config_file_name then
+  $tama_cfg_path = $OPT_config_file_name
+end
+verbose("Config: #{$tama_cfg_path}\n")
+load $tama_cfg_path
+
 if $OPT_temp_directory_name then
   $tmpdir = $OPT_temp_directory_name.dup
   $tmpdir.untaint
@@ -91,13 +96,6 @@ if !File::exists?($tmpdir) || File::ftype($tmpdir) != 'directory' then
   puts "#{$tmpdir} はディレクトリではありません。"
   exit
 end
-
-$tama_cfg_path = "./conf/tama.cfg"
-if $OPT_config_file_name then
-  $tama_cfg_path = $OPT_config_file_name
-end
-verbose("Config: #{$tama_cfg_path}\n")
-load $tama_cfg_path
 
 # セキュリティを強化
 $SAFE = 1
