@@ -12,7 +12,7 @@ echo $tarname...
 
 mkdir $basename || exit 1
 
-cp -R --preserve=timestamps bin lib doc conf html tools config *.rb *.ja $basename
+cp -R --preserve=timestamps bin lib doc conf html tools config *.rb *.ja Makefile $basename
 tar -cf $tarname --exclude=*~ --atime-preserve --preserve-permission --owner apache --group apache $basename
 gzip $tarname
 
