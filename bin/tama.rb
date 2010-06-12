@@ -29,7 +29,6 @@ require "sites.rb"
 #%conf_path%
 #%out_path%
 #%tmp_path%
-#%log_path%
 #%antenna_url%
 
 def usage()
@@ -101,11 +100,6 @@ verbose("Output directory: #{$outdir}\n")
 if !File::exists?($outdir) || File::ftype($outdir) != 'directory' then
   abort "#{$0}: #{$outdir} はディレクトリではありません。"
 end
-
-if $tama_log_path.empty? then
-  $tama_log_path = "#{$tmpdir}/log"
-end
-verbose("Log file: #{$tama_log_path}\n")
 
 # セキュリティを強化
 $SAFE = 1
@@ -438,7 +432,7 @@ if $OPT_noget != TRUE then
   sites_get.save(TAMA_GET_FILE, "DI") {|site| site.method != "REMOTE" }
   sites_get.save(TAMA_SITES_FILE, "DI")
   
-  File::open($tama_log_path, "w") do |f|
+  File::open("#{$tmpdir}/log", "w") do |f|
     # ログを書き込む
     f.puts ""
   end
