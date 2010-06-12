@@ -117,7 +117,7 @@ class HTTP1
       @body = ""
       @headers.clear
     ensure
-      if s.type == TCPSocket then
+      if s.class == TCPSocket then
 	s.close
       end
     end

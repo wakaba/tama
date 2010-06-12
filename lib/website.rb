@@ -20,7 +20,7 @@ class IgnoreCaseHash < Hash
   end
   
   def []=(key, value)
-    raise TypeError if key.type != String
+    raise TypeError if key.class != String
     k = keys.find {|key2| key2.downcase == key.downcase}
     self.set(k || key, value)
   end
@@ -74,7 +74,7 @@ class Website
   def Website.method_abbr=(abbr_hash); Class_v['method_abbr'] = abbr_hash; end
   
   def Website.hina(str, antenna_url = "")
-    raise TypeError if str.type != String || antenna_url.type != String
+    raise TypeError if str.class != String || antenna_url.class != String
     
     if str =~ /<!--(.*?)--><a href=(.*?)>(.*?)<\/a>(.*)/i then
       hina_comment = $1
@@ -141,7 +141,7 @@ class Website
   end
   
   def Website.lirs(str, antenna_url = "")
-    raise TypeError if str.type != String || antenna_url.type != String
+    raise TypeError if str.class != String || antenna_url.class != String
     
     array = csv_split(str, 14..-1)
     raise ArgumentError if array[0] != "LIRS"
@@ -170,7 +170,7 @@ class Website
   end
   
   def Website.di(str, antenna_url = "")
-    raise TypeError if str.type != String || antenna_url.type != String
+    raise TypeError if str.class != String || antenna_url.class != String
     
     di = IgnoreCaseHash::new
     lines = str.split(/\r?\n/)
@@ -230,7 +230,7 @@ class Website
   end
   
   def initialize(url, checkurl = "", title = "", author = "")
-    if url.type == Site then
+    if url.class == Site then
       site = url
       @title = site.title
       @author = site.author
