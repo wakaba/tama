@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<link rev="made" href="mailto:ikemo@wakaba.toyonaka.osaka.jp">
+<title>「たまてばこ」version 0.9.4の変更点</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+<a href="./">戻る</a>
+
+<hr>
+
+<h1>「たまてばこ」version 0.9.4の変更点</h1>
+
+<dl>
+  <dt>$siteの非互換性(<strong>必須</strong>)
+  <dd>tama.cfgの$siteには"./conf/sites.cfg"=&gt;"sites.lirs"という対応付けが
+  なされていますが、この"sites.lirs"を"sites"に変更して下さい
+  (要するに.lirsを削除する)。この変更を施さないと<strong>うまく動作しません</strong>。
+  <dt>$tzの追加
+  <dd>tama.cfgに $tz = 'JST'のようなタイムゾーンの指定を追加して下さい。
+  現在は何も指定されていない場合には'JST'が指定されたものとしますが、
+  将来この設定が必須になる可能性があります。
+  <dt>出力用ベースHTMLの設定
+  <dd>tama.cfgの$htmlで指定する出力用HTMLは
+  &lt;!--tama_output src="sites.lirs"--&gt;のような行が
+  含まれていると思いますが、のsites.lirsをsites.tamaに変更して下さい。
+  .lirsでも動作しますが、将来動作しなくなる可能性があります。
+  <dt>LASTMODIFIED
+  <dd>0.9.3までは&lt;!--tama_output method="LASTMODIFIED" src="..."--&gt;
+  のようにsrcオプションを付ける必要がありましたが、これが必要なくなりました。
+  srcオプションを付けても無視されるだけで動作には影響ありません。
+  <dt>ファイルの削除、追加 
+  <dd>site.rbとsiteinfo.rbとwebpage.rbが廃止され、website.rbが追加されました。
+  アップグレードの際はこれらの廃止されたファイルは削除されませんので、
+  自分で削除して下さい。あっても動作には影響ありません。
+</dl>
+
+<a href="./">戻る</a>
+
+<hr>
+<address>Copyright(C) 2000-2001 <a href="mailto:ikemo@wakaba.toyonaka.osaka.jp">Hideki Ikemoto(ikemo@wakaba.toyonaka.osaka.jp)</a></address>
+</body>
+</html>

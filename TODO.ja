@@ -1,0 +1,54 @@
+Known Bugs & TODO
+
+P1
+* ファイルが無いときに落ちる(いきなり--nogetとか)
+* エラーになったときLast-Modified-Detectedが付いているのはいいのか？
+* リモート情報取得時にエラーを区別できていない
+* remote.cfgの変換ツール
+* インストーラに設定ファイルの変換機能を付ける
+* URLの同一視判定
+* 自力取得時にremoteurlは設定すべきか?(現在はしていない)
+* <meta name="WWWC" content="..">の解釈
+* --verboseオプションの追加
+* public_htmlがないときインストーラが落ちる。
+* hina.txt形式の読み込みで"GET"扱いになってるのを修正。
+* キーワードからHTMLタグのぞく＆エスケープ
+* LIRSのつもりでDIを読み込むと落ちる
+
+P2
+* Group: 追加
+* Keyword: を二行以上に対応
+* <!--tama_output-->で知らない属性があるときに警告を出す。
+* Connection: closeを明示的に付けて動くようにする。
+* <!--tama_output-->中の設定がおかしいときのエラー表示
+* srcに絶対パスが使えるようにする
+* <!--tama_output src=..のsrcが存在しないときにエラーになる
+* hina-di ver2.2に準拠する。
+* FTPのusername(, password?)の設定
+
+P3
+* インストーラをまともにする。
+* 曜日の処理
+* hina.txt形式のLast-Detectedの処理の見直し
+* ドキュメントをまともにする。
+* install.rbで前のフォルダを消す
+
+P4
+* PUSH方式対応
+* ruby/gtkのインターフェース(WWWC風)
+* エラー処理の見直し(リクエスト送ったとたんConnection Closedされた時とか)。
+* Webベースの設定ツール or チェックツール
+* 広告などで常にサイズが変化する時うまくいかない(タグを取り除いたサイズ)
+* 認証がかかったサイトの情報取得
+
+P5
+* hina.txt形式のタイムゾーンはJST固定でいいのか?
+* いきなり--nogetする時に何か警告出すべき。
+* 複数のsites.cfgがある時に出力をまとめるには?
+* Antennaクラスのmergeメソッドを賢くする
+(ex. Aの方が新しいがAuthorが無い場合にBからAuthorを取って来る)
+* 英語ドキュメント
+* 国際化
+* EUC以外にも対応すべし
+* proxy対応(自前でSocket叩くので後回し)
+* その他たくさん:-)

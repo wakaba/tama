@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<link rev="made" href="mailto:ikemo@wakaba.toyonaka.osaka.jp">
+<title>「たまてばこ」設定リファレンス</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+<a href="./">戻る</a>
+
+<hr>
+
+<h1>「たまてばこ」設定リファレンス</h1>
+
+<ul>
+  <li><a href="#tamacfg">共通設定</a></li>
+  <li><a href="#site">サイトの登録</a></li>
+  <li><a href="#remote">リモートアンテナの登録</a></li>
+  <li><a href="#output">出力のカスタマイズ</a>
+  <ul>
+    <li><a href="#tama_output">$tama_output</a></li>
+    <li><a href="#tama_remote_output">$tama_remote_output</a></li>
+  </ul>
+</ul>
+
+<hr>
+
+<h2><a name="tamacfg">共通設定</a></h2>
+
+<p>conf/tama.cfgで、全体的な設定が行えます。</p>
+
+<dl>
+  <dt><a name="tamacfg_site">$site</a> : サイトの設定ファイルと出力時に使う名前の関係</dt>
+  <dd><a href="http://www.ruby-lang.org/ja/man-1.4/Hash.html">Hashクラス</a>の書式で設定します。
+  出力時に使う名前が"foo"の場合、foo.lirs(<a href="http://amano.hauN.org/LIRS.html">LIRS</a>)、foo.di(<a href="http://docinfo.jin.gr.jp/">DI</a>)、foo.txt(<a href="http://masshy.fastwave.gr.jp/hina/release/usage.html#protocol">hina.txt</a>)がそれぞれ出力されます。
+  出力時に使う名前に<strong>remote</strong>は使えません。
+  <dt><a name="tamacfg_html">$html</a> : 入力するHTMLファイルと出力するHTMLファイルの関係</dt>
+  <dd>これも<a href="http://www.ruby-lang.org/ja/man-1.4/Hash.html">Hashクラス</a>の書式で設定します。</dd>
+  <dt>$timeout : タイムアウトまでの時間(単位:秒)</dt>
+  <dd>サイトの情報やリモート情報の取得時にタイムアウトするまでの時間です。うまく取得できない場合はこの値を大きくすると良いでしょう。</dd>
+  <dt><a href="#tama_output">$tama_output</a>, <a href="#tama_remote_output">$tama_remote_output</a></dt>
+  <dd><a href="#output">出力のカスタマイズ</a>の項を参照して下さい。</dd>
+  <dt><a name="tamacfg_tz">$tz</a></dt>
+  <dd>タイムゾーンを指定します(現在のデフォルトはJST)。
+  'JST','GMT'のような形式の他に、'+0900','-0300'といった形式にも
+  対応しています。<a href="#option_tz">サイト登録のTZオプション</a>、<a href="#tama_output">$tama_output</a>も参照して下さい。</dd>
+</dl>
+
+<hr>
+
+<h2><a name="site">サイトの登録</a></h2>
+
+<p>conf/sites.cfg(<a href="#tamacfg_site">$site</a>で変更可能)でサイトの登録をします。
+設定ファイルは一行につき一サイトで、各設定は「,」区切りです。
+書式は以下のようになっています。</p>
+
+<p><strong>タイトル,著者名,表示するURL,チェックするURL,オプション</strong><br>
+<nobr>(例: <strong>Mozilla Watch,いけも,http://www.wakaba.toyonaka.osaka.jp/~ikemo/mozilla/,./hina.di,DI</nobr></strong>)</nobr></p>
+
+<p>「#」で始まる行はコメントとして無視されます。
+また、「,」そのものを入れたい場合には「\,」、
+「\」そのものを入れたい時は「\\」としてエスケープしてください。</p>
+
+<dl>
+  <dt>タイトル</dt>
+  <dd>そのサイトのタイトルです。</dd>
+  <dt>著者名</dt>
+  <dd>そのサイトの著者名です。</dd>
+  <dt>表示するURL</dt>
+  <dd>そのサイトのURLです。</dt>
+  <dt>チェックするURL</dt>
+  <dd>実際にチェックする時に使用するURLです。以下のような指定が可能です。
+  <ul>
+  <li>何も指定しない : 表示するURLが使われます。
+  <li>相対URL(例: ./di.cgi) : 表示するURLからの相対URLとして扱われます。
+  <li>その他(絶対URL) : 指定したURLが使われます。ローカルファイルを指定する際には、
+  file:///home/ikemo/public_html/index.htmlのように、"file://ファイルパス"とします。
+  </ul>
+  <dt>オプション</dt>
+  <dd>オプションは「|」区切りで複数指定する事が出来ます(例:「GET|DI|TZ=JST」)。
+  <ul>
+    <li>GET : HEADでなくGETで更新情報を取得します。<a href="http://www.nifty.com/">nifty</a>などのNetscape-Enterpriseを使っているサイトで有効です。</li>
+    <li>DI : HTTPヘッダを無視し、チェック先がDI形式であると仮定します。<a href="http://www.morito.mgmt.waseda.ac.jp/~tom/TomSoft/TsDiary/">TDS</a>などで有効です。</li>
+    <li>NO_REMOTE : リモート情報を利用せずに、常に自力で更新情報を取得します。
+ただし、<strong>チェックするURLが file:// の場合(ローカルファイル)は常に自力取得を行います</strong>。</li>
+    <li><a name="option_tz">TZ</a> : TZ=JSTの形で、表示する際のタイムゾーンを指定します。<a href="#tamacfg_tz">$tz</a>が指定されているときでもこちらの方が優先されます。
+  </ul></dd>
+</dl>
+
+<hr>
+
+<h2><a name="remote">リモートアンテナの登録</a></h2>
+
+<p>各サイトに公開されているアンテナの情報を取って来て、その情報を利用する事が出来ます。これによって、ネットワーク資源の節約が可能になります。「たまてばこ」では、以下のフォーマットに対応しています。</p>
+
+<ul>
+  <li><a href="http://amano.hauN.org/LIRS.html">LIRS</a></li>
+  <li><a href="http://docinfo.jin.gr.jp/">DI(hina-di)</a></li>
+  <li><a href="http://masshy.fastwave.gr.jp/hina/release/usage.html#protocol">hina.txt(朝日奈アンテナ)</a></li>
+</ul>
+
+<p>DI対応は不完全、hina.txtは制限があるため、「たまてばこ」では
+<strong>LIRSを推奨します</strong>。</p>
+
+<p>conf/remote.cfgでリモートアンテナの登録をします。設定ファイルは一行につき一アンテナで、各設定は「,」区切りです。書式は以下のようになっています。</p>
+
+<p><strong>タイトル,アンテナのURL,データのURL,フォーマット,略称</strong><br>
+<nobr>(例: <strong>mozilla.links,http://www.wakaba.toyonaka.osaka.jp/~ikemo/antenna/mozilla.html,./mozilla.lirs.gz,LIRS,m</strong>)</nobr></p>
+
+<p><a href="#site">サイトの登録</a>と同様に
+「#」で始まる行はコメントとして無視されます。
+また、「,」そのものを入れたい場合には「\,」、
+「\」そのものを入れたい時は「\\」としてエスケープしてください。</p>
+
+<dl>
+  <dt>タイトル</dt>
+  <dd>そのアンテナのタイトルです。</dd>
+  <dt>アンテナのURL</dt>
+  <dd>そのアンテナのURLです。</dd>
+  <dt>データのURL</dt>
+  <dd>実際に取得するデータのURLです。以下のような指定が可能です。
+  <ul>
+  <li>何も指定しない : 表示するURLが使われます。
+  <li>相対URL(例: ./di.cgi) : アンテナのURLからの相対URLとして扱われます。
+  <li>その他(絶対URL) : 指定したURLが使われます。ローカルファイルを指定する際には、
+  file:///home/ikemo/public_html/index.htmlのように、"file://ファイルパス"とします。
+  </ul>
+  <dt>フォーマット</dt>
+  <dd>
+  <ul>
+    <li>LIRS : <a href="http://amano.hauN.org/LIRS.html">LIRS</a>フォーマット</a></li>
+    <li>DI : <a href="http://docinfo.jin.gr.jp/">DI(hina-di)</a>フォーマット</a></li>
+    <li>HINA : <a href="http://masshy.fastwave.gr.jp/hina/release/usage.html#protocol">hina.txt(朝日奈アンテナ)</a></li>
+  </ul>
+  </dd>
+  <dt>略称</dt>
+  <dd>各種表示に使われる略称です。1バイトである必要はありません。</dd>
+</dl>
+
+<hr>
+
+<h2><a name="output">出力のカスタマイズ</a></h2>
+
+<p>html/base.html(<a href="#tamacfg_html">$html</a>で変更可能)で出力するHTMLの変更が出来ます。<br>
+<nobr>&lt;!--tama_output option1="value1" option2="value2" ...--&gt;</nobr>と書かれた行がある場合、
+それを次のように置換します。</p>
+
+<ul>
+  <li><a name="no_method">指定なし</a> : ファイルの内容を表示します(<a href="#tama_output">→$tama_output</a>)。</li>
+  <li>method="LASTMODIFIED" : 最終更新日時を表示します。</li>
+  <li>method="REMOTE" : リモート情報取得元を表示します(<a href="#tama_remote_output">→$tama_remote_output</a>)。</li>
+  <li>method="VERSION" : 「たまてばこ」のバージョンを表示します。</li>
+</ul>
+
+<p>その他のオプションは以下の通りです。</p>
+
+<dl>
+  <dt>src
+  <dd>対象となるファイルを指定します(.tama、.lirsが使用可能)。
+  <dt>sort
+  <dd>ソートして表示したい場合はyesを指定します。
+  <dt>max
+  <dd>表示する最大数を指定します。指定しない場合は全て表示します。
+  <dt>suffix (<strong>非推奨: formatを使ってください。このオプションは将来削除される可能性があります。</strong>)
+  <dd>URLの後に任意の文字列が付けられます。一般には、
+  "?%month%%day%%hour%%min%"として、更新されたのが分かるようにします。
+  <dt>format
+  <dd>表示するフォーマットを指定します。指定する内容は、
+  <a href="#tama_output">$tama_output</a>、
+  <a href="#tama_remote_output">$tama_remote_output</a>とそれぞれ同じです。
+  また、この値が指定されているときは
+  <a href="#tama_output">$tama_output</a>、
+  <a href="#tama_remote_output">$tama_remote_output</a>の値は
+  無視されます。
+</dl>
+
+<p>組合せは以下のようになります(○:必須、△:任意、×:使えない(無視))。</p>
+
+<table border="1">
+
+<tr>
+<td>method</td><td>src</td><td>sort</td><td>max</td><td>suffix</td><td>format</td><td>使用例</td>
+</tr>
+
+<tr>
+<td>指定なし</td><td>○</td><td>△</td><td>△</td><td>△</td><td>△</td><td><tt>&lt;!--tama_output src="mozilla.tama" sort="yes" max="100"--&gt;<br>
+&lt;!--tama_output src="mozilla.lirs" format="&lt;li&gt;%hour%%min% &lt;a href=\"%url%?%hour%%min%\"&gt;%title%&lt;/a&gt; %author%"--&gt;</tt></td>
+</tr>
+
+<tr>
+<td>LASTMODIFIED</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td><tt>&lt;!--tama_output method="LASTMODIFIED"--&gt;</tt></td>
+</tr>
+
+<tr>
+<td>REMOTE</td><td>×</td><td>×</td><td>×</td><td>×</td><td>△</td><td><tt>&lt;!--tama_output method="REMOTE"--&gt;<br>
+&lt;--tama_output method="REMOTE" format="&lt;li&gt;&lt;a href=\"%url%\"&gt;%abbr%&lt;/a&gt;：%title%(%format%)&lt;/li&gt;"--&gt;</tt></td>
+</tr>
+
+<tr>
+<td>VERSION</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td><tt>&lt;!--tama_output method="VERSION"--&gt;</tt></td>
+</tr>
+
+</table>
+
+<h3><a name="tama_output">$tama_output</a></h3>
+
+<p><a href="#tamacfg">共通設定</a>の$tama_outputで、
+<a href="#no_method">methodを指定しない時</a>の出力フォーマットを設定できます。
+以下の文字列が置換されます。</p>
+
+<dl>
+  <dt>%year%、%month、%day%、%hour%、%min%、%sec%</dt>
+  <dd>サイトの更新時刻(それぞれ、年、月、日、時間、分、秒)</dd>
+  <dt>%method%</dt>
+  <dd>
+  <ul>
+    <li>自力で情報を取得した場合 : 取得した方法を表示します(H:HEAD、G:GET、F:FILE、L:LENGTH、C:CACHE、0:ERROR)。</li>
+    <li>リモート情報から取得した場合 : 更新時刻を取得したアンテナへの<strong>リンク</strong>を表示します。</li>
+  </ul></dd>
+  <dt>%authorized%</dt>
+  <dd>情報を<strong>自力取得した</strong>アンテナのURLを表示します。</dd>
+  <dt>%url%
+  <dd>サイトのURLを表示します。</dd>
+  <dt>%title%
+  <dd>サイトのタイトルを表示します。</dd>
+  <dt>%author%
+  <dd>サイトの著者を表示します。</dd>
+  <dt>%tz%
+  <dd>タイムゾーンを表示します。</dd>
+  <dt>%%</dt>
+  <dd>「%」を表示します。</dd>
+</dl>
+
+<h3><a name="tama_remote_output">$tama_remote_output</a></h3>
+
+<p>同様に<a href="#tamacfg">共通設定</a>の$tama_remote_outputでは、method="REMOTE"を指定した時の出力フォーマットを設定できます。以下の文字列が置換されます。</p>
+
+<dl>
+  <dt>%url%</dt>
+  <dd>リモートアンテナのURLを表示します。</dd>
+  <dt>%abbr%</dt>
+  <dd>リモートアンテナの略称を表示します。</dd>
+  <dt>%title%</dt>
+  <dd>リモートアンテナのタイトルを表示します。</dd>
+  <dt>%format%</dt>
+  <dd>リモートアンテナのフォーマットを表示します。</dd>
+  <dt>%%</dt>
+  <dd>「%」を表示します。</dd>
+</dl>
+
+<a href="./">戻る</a>
+
+<hr>
+<address>Copyright(C) 2000-2001 <a href="mailto:ikemo@wakaba.toyonaka.osaka.jp">Hideki Ikemoto(ikemo@wakaba.toyonaka.osaka.jp)</a></address>
+</body>
+</html>

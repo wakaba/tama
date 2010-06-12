@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<link rev="made" href="mailto:ikemo@wakaba.toyonaka.osaka.jp">
+<title>「たまてばこ」公式ページ</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+<h1>「たまてばこ」公式ページ</h1>
+
+<hr>
+
+<h2>最新情報</h2>
+
+<p>2001年6月18日:「たまてばこ」version 1.1.63(開発版)をリリースしました。</p>
+
+<p>2001年6月9日:「たまてばこ」version 1.1.62(開発版)をリリースしました。</p>
+
+<p>2001年6月3日:「たまてばこ」version 1.1.61(開発版)をリリースしました。</p>
+
+<p>2001年5月28日:「たまてばこ」version 1.1.60(開発版)をリリースしました。</p>
+
+<p>2001年5月11日:「たまてばこ」version 1.1.55(開発版)をリリースしました。</p>
+
+<p>2001年4月30日:「たまてばこ」version 1.1.54(開発版)をリリースしました。</p>
+
+<p>2001年4月18日:「たまてばこ」version 1.1.53(開発版)をリリースしました。
+今回から、Rubyのバージョンは1.6以上が必要になります。</p>
+
+<p>2001年4月8日:「たまてばこ」version 1.1.52(開発版)をリリースしました。</p>
+
+<p>2001年3月29日:「たまてばこ」version 1.1.51(開発版)をリリースしました。</p>
+
+<p>2001年3月26日:「たまてばこ」version 1.1.50(開発版)をリリースしました。</p>
+
+<p>2001年1月30日:「たまてばこ」version 1.0.0をリリースしました。変更点は以下の通りです。
+
+<ul>
+<li>起動オプション--check指定時に警告とエラーの数を表示するようにしました。
+<li>その他バグ修正。
+</ul>
+
+<p>0.9.3以前と0.9.4以降では一部の設定に互換性がありません。
+詳しくは<a href="change_0.9.4.html">変更点</a>をご覧下さい。</p>
+
+<p><a href="whatsnew.html">変更履歴</a></p>
+
+<hr>
+
+<ul>
+<li><a href="#abount">「たまてばこ」とは</a></li>
+<li><a href="#download">ダウンロード</a></li>
+<li><a href="#install">インストール</a></li>
+<li><a href="reference.html">設定リファレンス</a></li>
+<li><a href="case_study.html">事例集</a></li>
+<li><a href="#security">セキュリティ</a></li>
+<li><a href="#bug">既知のバグ</a></li>
+<li><a href="#license">ライセンス</a></li>
+<li><a href="#support">サポート</a></li>
+<!--  <li>技術文書</li>-->
+</ul>
+
+<hr>
+
+<h2><a name="abount">「たまてばこ」とは</a></h2>
+
+<p>各サイトの更新時刻を取得してHTMLに出力する、
+いわゆる「アンテナ」と呼ばれるシステムです。同様のシステムには
+<a href="http://masshy.fastwave.gr.jp/hina/release/">朝日奈アンテナ</a>、
+<a href="http://amano.hauN.org/natsumican.html">なつみかん</a>、
+<a href="http://na01.shonan.ne.jp/~gorry/wdb/">WDB</a>などがあります。</p>
+
+<p>次のような特徴を持っています。</p>
+  
+<ul>
+<li><a href="http://www.ruby-lang.org/">Ruby</a>で書かれています。</li>
+<li>他のアンテナの出力する形式に対応しています(<a href="http://amano.hauN.org/LIRS.html">LIRS</a>,<a href="http://docinfo.jin.gr.jp/">DI</a>,<a href="http://masshy.fastwave.gr.jp/hina/release/usage.html#protocol">hina.txt</a>に対応)。</li>
+<li>インストーラが付いています。</li>
+<li>設定がシンプルです。</li>
+</ul>
+
+<p>一方、次のような制限があります。</p>
+
+<ul>
+<li>Unix系OS以外の環境は考えていません。</li>
+<li>複数同時接続には対応していません。</li>
+<li>認証が必要なサイトの更新時刻は取得できません。</li>
+<li>機能が少ないです:-)</li>
+</ul>
+
+<p>「たまてばこ」の動作例としては、
+<a href="/~ikemo/antenna/">素子アンテナ</a>があります。
+
+<hr>
+
+<h2><a name="download">ダウンロード</a></h2>
+
+<p>最新のバージョンは、安定版1.0.0(2001/01/30リリース)、
+開発版1.1.63(2001/06/18リリース)です。</p>
+
+<ul>
+<li><a href="/~ikemo/archive/tama-1.0.0.tar.gz">tama-1.0.0.tar.gz</a></li>
+<li><a href="download.html">開発版＆古いバージョン</a></li>
+</ul>
+
+<p>設置には<a href="http://www.ruby-lang.org/">ruby</a> ver 1.4.6もしくは1.6.xが必要になります。他のバージョンでも動くかもしれません。</p>
+
+<p>開発環境は<a href="http://www.kondara.org/">Kondara MNU/Linux</a>(Mary-RC2)
++ ruby-1.6.3 and ruby-1.4.6、
+動作確認環境はこれに加えて、<a href="http://www.freebsd.org/">FreeBSD</a> 4.1.1-RELEASE + ruby-1.6.1 and ruby-1.4.6です。</p>
+
+<hr>
+
+<h2><a name="install">インストール</a></h2>
+
+<p>ruby install.rbとすると、インストーラが起動します。
+以下の点について聞かれますので、それぞれ答えて下さい。</p>
+
+<ul>
+<li>rubyのパス</li>
+<li>gzipのパス</li>
+<li>設定ファイルをインストールするディレクトリ</li>
+<li>出力先ディレクトリ</li>
+<li>アンテナのURL</li>
+</ul>
+
+<p>アップデート時も同様にインストーラを使って下さい。
+設定ファイルは上書きされませんが、スクリプトは上書きされます。
+念のため、バックアップを取っておく事をお勧めします。</p>
+
+<p>この状態でインストールしたディレクトリに移動し、
+ruby tama.rbとすると動作します。
+設定方法は、<a href="reference.html">設定リファレンス</a>をご覧下さい。</p>
+
+<ul>
+<li><a name="option">起動オプション</a>
+<ul>
+<li>--version : バージョンを表示する。</li>
+<li>--noget : 取得を行わずにHTML出力だけする。</li>
+<li>--debug : 取得状況を日本語で表示する。</li>
+<li>--help : 詳しい使い方を表示する。</li>
+<li>--check : 設定ファイルをチェックして終了する。</li>
+<li>--local : ローカルファイル(チェックするURLがfile://のもの)のみ更新する。</li>
+</ul></li>
+</ul>
+
+<hr>
+
+<h2><a name="security">セキュリティ</a></h2>
+
+<p>rubyのセキュリティチェック機能を利用しています。ですが、
+プログラムの性質上、以下の内容は信頼できると仮定しています。</p>
+
+<ul>
+<li>conf/ ディレクトリ以下にある各種設定ファイル</li>
+<li>html/ ディレクトリ以下にある出力元のHTMLファイル</li>
+<li>起動オプション</li>
+</ul>
+
+<p>これらのファイルを勝手に変更されないように気を付けて下さい。</p>
+
+<hr>
+
+<h2><a name="bug">既知のバグ</a></h2>
+  
+<ul>
+<li>取得するサイトの状態によって落ちるなどの現象が確認されています(修正済み?)。</li>
+<li><a href="http://kohgushi.fastwave.gr.jp/hina-doc/hina2_2-rev0_10.txt">hina-di version 2.2</a>に準拠していません。</li>
+</ul>
+
+</ul>
+
+<p>その他のバグについてはTODO.jaを参照して下さい。</p>
+
+<hr>
+
+<h2><a name="license">ライセンス</a></h2>
+  
+<ul>
+<li>「たまてばこ」を利用した際のトラブルについて作者は一切の責任を負いません。</li>
+<li>再配布、改造は自由ですが、著作権表示やこの条件リストがある場合はそれを削除しない事。</li>
+</ul>
+
+<hr>
+
+<h2><a name="support">サポート</a></h2>
+
+<p>サポートの義務はありませんが、出来る限り何とかしますので:)、
+バグ報告、要望、意見、疑問などは
+<a href="mailto:ikemo@wakaba.toyonaka.osaka.jp">メール</a>や<a href="/~ikemo/minibbs.cgi">掲示板</a>などで気軽にどうぞ。</p>
+  
+<hr>
+<address>Copyright(C) 2000-2001 <a href="mailto:ikemo@wakaba.toyonaka.osaka.jp">Hideki Ikemoto(ikemo@wakaba.toyonaka.osaka.jp)</a></address>
+</body>
+</html>

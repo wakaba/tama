@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<title>「たまてばこ」事例集</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+<a href="./">戻る</a>
+
+<hr>
+
+<h1>「たまてばこ」事例集</h1>
+
+<p>参考情報です。これらの方法が使える保証はありません。</p>
+
+<ul>
+<li>サイト別設定方法
+<ul>
+<li>hnsを使った日記の場合(di.cgi)
+<li>TDSを使った日記の場合(hina.di)
+<li>ブラウザで見られるにもかかわらずエラーになってしまう場合
+<li>制限事項
+</ul>
+</ul>
+
+</ul>
+
+<hr>
+
+<h2>サイト別設定方法</h2>
+
+<h3><a href="http://www.h14m.org/">hns</a>を使った日記の場合(di.cgi)</h3>
+
+<p>hns-2.10(正確にはbeta4以降)では<a href="http://www.h14m.org/docs/di-j.html">di.cgi</a>が付属しているので、チェックするURLにdi.cgiを指定してください。
+具体的には以下のようになります。</p>
+
+<pre>
+いけもの日記,いけも,http://www.wakaba.toyonaka.osaka.jp/~ikemo/d/,./di.cgi,
+</pre>
+
+<p>di.cgiではタイトルや著者名が利用できますが、
+現在この情報は利用されていません。</p>
+
+<h3><a href="http://www.morito.mgmt.waseda.ac.jp/~tom/TomSoft/TsDiary/">TDS</a>を使った日記の場合(hina.di)</h3>
+
+<p>TDSでは設定によりhina.diを出力するので、チェックするURLにhina.diを
+指定してください。</p>
+
+<pre>
+Mozilla Watch,いけも,http://www.wakaba.toyonaka.osaka.jp/~ikemo/mozilla/,./hina.di,DI
+</pre>
+
+<h3>ブラウザで見られるにもかかわらずエラーになってしまう場合</h3>
+
+<p>取得先のサーバがNetscape-Enterpriseである場合、
+サーバのバグのため更新時刻が取得できないことがあります。</p>
+
+<p>サーバの種類は、w3mやlynxでページを開き、'='キーを押せば確認できます。</p>
+
+<p>この場合、HEADメソッドでなくGETメソッドを明示的に指定する、
+もしくはindex.htmlを明示的に指定することによって
+エラーが回避できる場合があります。具体的な記述方法は以下の通りです。</p>
+
+<pre>
+mozilla.org,The Mozilla Organization,http://www.mozilla.org/,,GET
+mozilla.org,The Mozilla Organization,http://www.mozilla.org/index.html,,
+</pre>
+
+<h3>制限事項</h3>
+
+<p>「たまてばこ」version 1.0.0では現在、
+次のサイトの更新時刻が取得できません。</p>
+
+<ul>
+<li><a href="http://www.zdnet.co.jp/">ZDNet</a>内の各ページ(広告によって毎回ファイルサイズが変わってしまうため)
+<li><a href="http://www.kernel.org/">The Linux Kernel Archives</a>(更新されてもファイルサイズが変わらないため)
+</ul>
+
+<a href="./">戻る</a>
+
+<hr>
+
+<address>Copyright(C) 2000-2001 <a href="mailto:ikemo@wakaba.toyonaka.osaka.jp">Hideki Ikemoto(ikemo@wakaba.toyonaka.osaka.jp)</a></address>
+</body>
+</html>
