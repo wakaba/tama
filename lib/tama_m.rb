@@ -3,7 +3,7 @@
 
 module TAMA
   Official = "http://www.wakaba.jp/~ikemo/soft/tama/"
-  Version = "1.1.66"
-  Build = "2002-03-10-12"
-  Agent = "TAMATEBAKO/#{Version} (#{Build}; #{Official})"
+  Version = "1.1.66-mod1"
+  Build = "2010-06-12"
+  Agent = "TAMATEBAKO/#{Version} (#{Build})"
 end
