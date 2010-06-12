@@ -30,19 +30,15 @@ require "sites.rb"
 #%antenna_url%
 #%mail_address%
 
-load "./conf/tama.cfg"
-
 def usage()
   puts "Usage: tama.rb [--noget] [--local] [--version] [--help] [--check]"
+  puts "               [--config-file-name file-name]"
   puts "               [--force] [--verbose] [--debug]"
   puts "詳しい使い方は 'tama.rb --help'を実行して下さい。"
 end
 
 $USAGE = 'usage'
-parseArgs(0, nil, nil, "noget", "local", "version", "debug", "help", "check", "force", "verbose")
-
-# セキュリティを強化
-$SAFE = 1
+parseArgs(0, nil, nil, "noget", "local", "version", "debug", "help", "check", "config-file-name:", "force", "verbose")
 
 if $OPT_version == TRUE then
   puts "#{TAMA::Version}"
@@ -63,6 +59,15 @@ if $OPT_help == TRUE then
   puts "  --debug              デバッグ用のメッセージを出力します。"
   exit
 end
+
+$tama_cfg_path = "./conf/tama.cfg"
+if $OPT_config_file_name then
+  $tama_cfg_path = $OPT_config_file_name
+end
+load $tama_cfg_path
+
+# セキュリティを強化
+$SAFE = 1
 
 if $OPT_check == TRUE then
   puts "チェックを開始します。"
