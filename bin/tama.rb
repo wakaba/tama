@@ -28,7 +28,6 @@ require "sites.rb"
 #%gzip_path%
 #%out_path%
 #%antenna_url%
-#%mail_address%
 
 def usage()
   puts "Usage: tama.rb [--noget] [--local] [--version] [--help] [--check]"

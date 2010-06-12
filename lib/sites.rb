@@ -94,11 +94,7 @@ class Site
   def check_ftp(cache = nil)
     website = Website::new(self)
     checkurl = URL::new(@checkurl)
-    if $mail_address == nil || $mail_address.empty? then
-      address = 'tama@'
-    else
-      address = $mail_address
-    end
+    address = 'anon@'
     
     begin
       timeout(30) {

@@ -109,7 +109,6 @@ def install()
 	 "-e 's|^#%out_path%|$outdir = \"#{$out_path}\"|' " +
 	 "-e 's|^#%antenna_url%|$referer = \"#{$antenna_url}\"|' " +
 	 "-e 's|^#%gzip_path%|$gzip = \"#{$gzip_path}\"|' " +
-	 "-e 's|^#%mail_address%|$mail_address = \"#{$mail_address}\"|' " +
 	 "< bin/tama.rb > #{$install_path}/tama.rb")
   
   # 実行可能にする
@@ -122,7 +121,6 @@ def install()
     f.puts "GZIP_PATH=#{$gzip_path}"
     f.puts "INSTALL_PATH=#{$install_path}"
     f.puts "OUT_PATH=#{$out_path}"
-    f.puts "MAIL_ADDRESS=#{$mail_address}"
     f.puts "ANTENNA_URL=#{$antenna_url}"
   end
   
@@ -136,7 +134,6 @@ $ruby_path = ""
 $gzip_path = ""
 $install_path = ""
 $out_path = ""
-$mail_address = ""
 
 puts "「たまてばこ」version #{$VERSION}のインストールを始めます。"
 puts "いくつかのファイルを上書きしますので、"
@@ -163,8 +160,6 @@ if exist?($setup) then
       $antenna_url = value
     when "TAMA_VERSION"
       $tama_version = value
-    when "MAIL_ADDRESS"
-      $mail_address = value
     end
   }
   puts "以前の設定情報が見付かりました。"
@@ -174,7 +169,6 @@ if exist?($setup) then
   puts "gzip           : #{$gzip_path}"
   puts "設定ファイル   : #{$install_path}"
   puts "出力先         : #{$out_path}"
-  puts "メールアドレス : #{$mail_address}"
   puts "URL            : #{$antenna_url}"
   
   puts
@@ -255,12 +249,6 @@ if $out_path.empty? then
   $out_path = "#{ENV['HOME']}/public_html/antenna"
 end
 
-# メールアドレス(anonymous FTPで使う)
-puts
-puts "メールアドレスを入力して下さい(anonymous FTPで使います)。[]"
-print "> "
-$mail_address = $stdin.readline.chomp
-
 # アンテナのURL(HTTP_REFERERで送られる)
 puts
 puts "アンテナのURLを入力して下さい。[]"
@@ -272,7 +260,6 @@ puts "ruby           : #{$ruby_path} (#{$ruby_version})"
 puts "gzip           : #{$gzip_path}"
 puts "設定ファイル   : #{$install_path}"
 puts "出力先         : #{$out_path}"
-puts "メールアドレス : #{$mail_address}"
 puts "URL            : #{$antenna_url}"
 
 puts
