@@ -15,7 +15,7 @@ else
   $setup = "#{ENV['HOME']}/.tama_setup_beta"
 end
 
-$VERSION = "1.1.66"
+$VERSION = "1.1.66-mod1"
 include FileTest
 
 if $0.index('/') != nil then
