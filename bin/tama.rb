@@ -66,6 +66,7 @@ if $OPT_help == TRUE then
   exit
 end
 
+$remote_cfg_path = './conf/remote.cfg'
 $tmpdir = './tmp/'
 
 $tama_cfg_path = "./conf/tama.cfg"
@@ -74,6 +75,8 @@ if $OPT_config_file_name then
 end
 verbose("Config: #{$tama_cfg_path}\n")
 load $tama_cfg_path
+
+verbose("Remote config: #{$remote_cfg_path}\n")
 
 if $OPT_temp_directory_name then
   $tmpdir = $OPT_temp_directory_name.dup
@@ -133,7 +136,7 @@ def get_remote()
   verbose("Get remote files\n\n")
   
   sites_remote = Antenna::new  
-  remotes = Remotes::open("./conf/remote.cfg")
+  remotes = Remotes::open($remote_cfg_path)
   remotes.each { |remote|
     checkurl = URL::new(remote.src, remote.url).to_s
     verbose("GET: #{checkurl}\n")
@@ -329,7 +332,7 @@ end
 
 # HTMLに出力する。
 def antenna_out()
-  remotes = Remotes::open("./conf/remote.cfg")
+  remotes = Remotes::open($remote_cfg_path)
   
   $html.each {|basehtml, outhtml|
     out = File::open(outhtml, "w")
@@ -363,7 +366,7 @@ if $OPT_noget != TRUE && $OPT_local != TRUE then
   verbose("Date: #{Time::now.to_s}\n\n")
 end
 
-remotes = Remotes::open("./conf/remote.cfg")
+remotes = Remotes::open($remote_cfg_path)
 remotes.each {|remote|
   Website::method_abbr[remote.url] = "<a href=\"#{remote.url}\">#{remote.abbr}</a>"
 }
