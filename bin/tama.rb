@@ -33,12 +33,13 @@ require "sites.rb"
 def usage()
   puts "Usage: tama.rb [--noget] [--local] [--version] [--help] [--check]"
   puts "               [--config-file-name file-name]"
+  puts "               [--output-directory-name dir-name]"
   puts "               [--force] [--verbose] [--debug]"
   puts "詳しい使い方は 'tama.rb --help'を実行して下さい。"
 end
 
 $USAGE = 'usage'
-parseArgs(0, nil, nil, "noget", "local", "version", "debug", "help", "check", "config-file-name:", "force", "verbose")
+parseArgs(0, nil, nil, "noget", "local", "version", "debug", "help", "check", "config-file-name:", "output-directory-name:", "force", "verbose")
 
 if $OPT_version == TRUE then
   puts "#{TAMA::Version}"
@@ -47,6 +48,8 @@ end
 
 if $OPT_help == TRUE then
   puts "Usage: tama.rb [--noget] [--local] [--version] [--help] [--check]"
+  puts "               [--config-file-name file-name]"
+  puts "               [--output-directory-name dir-name]"
   puts "               [--force] [--verbose] [--debug]"
   puts
   puts "  --noget              更新情報を取得せずに出力だけします。"
@@ -57,6 +60,16 @@ if $OPT_help == TRUE then
   puts "  --force              更新時刻間隔の変更を無効にしてチェックします。"
   puts "  --verbose            詳細なメッセージを出力します。"
   puts "  --debug              デバッグ用のメッセージを出力します。"
+  exit
+end
+
+if $OPT_output_directory_name then
+  $outdir = $OPT_output_directory_name.dup
+  $outdir.untaint
+end
+
+if !File::exists?($outdir) || File::ftype($outdir) != 'directory' then
+  puts "#{$outdir} はディレクトリではありません。"
   exit
 end
 
