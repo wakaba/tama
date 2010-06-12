@@ -1,4 +1,4 @@
-# ¡Ö¤¿¤Ş¤Æ¤Ğ¤³¡×version 1.1.66
+# ã€ŒãŸã¾ã¦ã°ã“ã€version 1.1.66
 # Copyright(C) 2000-2001 Hideki Ikemoto
 
 require 'cgi'
@@ -9,7 +9,7 @@ require "func.rb"
 require 'http1.rb'
 require 'sites.rb'
 
-# ¥­¡¼¤ËÊ¸»úÎó¤À¤±¤ò¼è¤ê¡¢¥­¡¼¤ÎÂçÊ¸»ú¾®Ê¸»ú¤ò¶èÊÌ¤·¤Ê¤¤Hash
+# ã‚­ãƒ¼ã«æ–‡å­—åˆ—ã ã‘ã‚’å–ã‚Šã€ã‚­ãƒ¼ã®å¤§æ–‡å­—å°æ–‡å­—ã‚’åŒºåˆ¥ã—ãªã„Hash
 class IgnoreCaseHash < Hash
   alias set []=
   alias get []
@@ -215,7 +215,7 @@ class Website
     methods = method.split('/')
     if methods[-1].to_i != 0 then
       website.code = methods[-1].to_i
-      # method = []¤Î»ş¡¢method[0..-2]=nil
+      # method = []ã®æ™‚ã€method[0..-2]=nil
       website.methods = methods[0..-2] || []
     else
       website.code = 0
@@ -248,10 +248,10 @@ class Website
     @lastdetected = 0
     @tz = ""
     @size = 0
-    # ¹¹¿·»ş¹ï¤ò¼«ÎÏ¤Ç¥Á¥§¥Ã¥¯¤·¤¿¥¢¥ó¥Æ¥Ê¤ÎURL
+    # æ›´æ–°æ™‚åˆ»ã‚’è‡ªåŠ›ã§ãƒã‚§ãƒƒã‚¯ã—ãŸã‚¢ãƒ³ãƒ†ãƒŠã®URL
     @authorized = ""
     
-    # ¾ğÊó¤ò¼èÆÀ¤·¤¿¥¢¥ó¥Æ¥Ê¤ÎURL
+    # æƒ…å ±ã‚’å–å¾—ã—ãŸã‚¢ãƒ³ãƒ†ãƒŠã®URL
     @remoteurl = ""
     @keyword = ""
     @methods = []
@@ -288,7 +288,7 @@ class Website
   end
   
   def to_hina
-    time = Time::at(@lastmodified + 32400).gmtime # JST¸ÇÄê
+    time = Time::at(@lastmodified + 32400).gmtime # JSTå›ºå®š
     timestr = time.strftime('%Y/%m/%d %H:%M')
     linkstr = "<A HREF=\"#{@url}\">#{@title}</A> #{@author}"
     

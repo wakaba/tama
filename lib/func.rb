@@ -1,12 +1,12 @@
-# ¡Ö¤¿¤Ş¤Æ¤Ğ¤³¡×version 1.1.66
+# ã€ŒãŸã¾ã¦ã°ã“ã€version 1.1.66
 # Copyright(C) 2000-2001 Hideki Ikemoto
 
 require 'nkf'
 
-IN_NAME = :IN_NAME     # name="value"¤Îname¤Î¾õÂÖ
-IN_VALUE = :IN_VALUE   # name="value"¤Îvalue¤Î¾õÂÖ
-IN_NORMAL = :IN_NORMAL # ¤½¤ì°Ê³°(separator¤È¤«)
-IN_ESCAPE = :IN_ESCAPE # \¤Ç¥¨¥¹¥±¡¼¥×¤·¤¿¾õÂÖ
+IN_NAME = :IN_NAME     # name="value"ã®nameã®çŠ¶æ…‹
+IN_VALUE = :IN_VALUE   # name="value"ã®valueã®çŠ¶æ…‹
+IN_NORMAL = :IN_NORMAL # ãã‚Œä»¥å¤–(separatorã¨ã‹)
+IN_ESCAPE = :IN_ESCAPE # \ã§ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ã—ãŸçŠ¶æ…‹
 
 def attr_split(src)
   ret = {}
@@ -54,7 +54,7 @@ def attr_split(src)
   ret
 end
 
-# ½ªÎ»¤·¤Æ¤¤¤ë(¥Ğ¥Ã¥¯¥¹¥é¥Ã¥·¥å¤Ç½ª¤ï¤Ã¤Æ¤¤¤Ê¤¤)»ş¤Ëtrue
+# çµ‚äº†ã—ã¦ã„ã‚‹(ãƒãƒƒã‚¯ã‚¹ãƒ©ãƒƒã‚·ãƒ¥ã§çµ‚ã‚ã£ã¦ã„ãªã„)æ™‚ã«true
 def unescape(str)
   data = ""
   status = IN_NORMAL
@@ -102,7 +102,7 @@ def csv_split(src, range = nil)
       status = IN_NORMAL
     else
       status, str = unescape(item)
-      if status == IN_NORMAL then # ¥¨¥¹¥±¡¼¥×½èÍı¤Ç½ª¤ï¤Ã¤Æ¤¤¤Ê¤¤
+      if status == IN_NORMAL then # ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—å‡¦ç†ã§çµ‚ã‚ã£ã¦ã„ãªã„
 	ret.push(data + str)
 	data = ""
       else
@@ -175,7 +175,7 @@ end
 
 def str2unixtime(str, tz = nil)
   if str =~ /..., (\d?\d) (...) (....) (..):(..):(..) (.*)/ then
-    # É¸½àÅª¤Ê¥Õ¥©¡¼¥Ş¥Ã¥È(RFC1123)
+    # æ¨™æº–çš„ãªãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ(RFC1123)
     lag = tz2lag($7)
     begin
       time = Time::gm($3, $2, $1, $4, $5, $6)
@@ -184,7 +184,7 @@ def str2unixtime(str, tz = nil)
       return 0
     end
   elsif str =~ /.*, (..)\-(...)\-(..) (..):(..):(..) (.*)/ then
-    # RFC850¤ò¥Ù¡¼¥¹¤Ë¤·¤¿¤â¤Î
+    # RFC850ã‚’ãƒ™ãƒ¼ã‚¹ã«ã—ãŸã‚‚ã®
     year = if $3.to_i < 70 then $3.to_i + 2000 else $3.to_i + 1900 end
     month = $2
     day = $1
@@ -199,7 +199,7 @@ def str2unixtime(str, tz = nil)
       return 0
     end
   elsif str =~ /... (...) (..) (..):(..):(..) (....)/ then
-    # ANSI C ¤Îasctime()¥Õ¥©¡¼¥Ş¥Ã¥È
+    # ANSI C ã®asctime()ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
     year = $6
     month = $1
     day = $2
@@ -214,14 +214,14 @@ def str2unixtime(str, tz = nil)
       return 0
     end
   elsif str =~ %r|(.*)/(..)/(..) (..):(..)| then
-    # Ä«ÆüÆà¥¢¥ó¥Æ¥Ê·Á¼°
+    # æœæ—¥å¥ˆã‚¢ãƒ³ãƒ†ãƒŠå½¢å¼
     year = $1.to_i
     month = $2.to_i
     day = $3.to_i
     hour = $4.to_i
     min = $5.to_i
     if year <= 99 then
-      # Ç¯¤¬2·å¤Î¾ì¹ç
+      # å¹´ãŒ2æ¡ã®å ´åˆ
       year += 1900
     end
     lag = if tz then tz2lag(tz) else 0 end
@@ -235,23 +235,23 @@ def str2unixtime(str, tz = nil)
   0
 end
 
-# --debug¤¬ÉÕ¤¤¤Æ¤¤¤ë¤È¤­¤À¤±É½¼¨¤¹¤ë¥¨¥é¡¼
+# --debugãŒä»˜ã„ã¦ã„ã‚‹ã¨ãã ã‘è¡¨ç¤ºã™ã‚‹ã‚¨ãƒ©ãƒ¼
 def debug(str)
   print str if $OPT_debug == TRUE
 end
 
-# --verbose¤â¤·¤¯¤Ï--debug¤¬ÉÕ¤¤¤Æ¤¤¤ë¤È¤­¤ËÉ½¼¨¤¹¤ë¥¨¥é¡¼
+# --verboseã‚‚ã—ãã¯--debugãŒä»˜ã„ã¦ã„ã‚‹ã¨ãã«è¡¨ç¤ºã™ã‚‹ã‚¨ãƒ©ãƒ¼
 def verbose(str)
   print str if $OPT_debug == TRUE || $OPT_verbose == TRUE
 end
 
-# ¾ï¤ËÉ½¼¨¤¹¤ë¥¨¥é¡¼
+# å¸¸ã«è¡¨ç¤ºã™ã‚‹ã‚¨ãƒ©ãƒ¼
 def warning(str)
   print "warning: #{str}"
 end
 
 def check_format
-  print "¸½ºß¤³¤Î¥ª¥×¥·¥ç¥ó¤Ï¥µ¥İ¡¼¥È¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£"
+  print "ç¾åœ¨ã“ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã¯ã‚µãƒãƒ¼ãƒˆã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚"
 end
 
 class String

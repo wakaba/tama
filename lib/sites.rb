@@ -1,4 +1,4 @@
-# ¡Ö¤¿¤Ş¤Æ¤Ğ¤³¡×version 1.1.66
+# ã€ŒãŸã¾ã¦ã°ã“ã€version 1.1.66
 # Copyright(C) 2000-2001 Hideki Ikemoto
 
 require 'net/ftp'
@@ -36,13 +36,13 @@ class Site
       ret.lastmodified = Time::now.to_i
       ret.lastdetected = Time::now.to_i
     elsif cache.lastmodified == 0 then
-      # °ìÅÙ¤â¹¹¿·¤ò¥Á¥§¥Ã¥¯¤·¤Æ¤¤¤Ê¤¤»ş
+      # ä¸€åº¦ã‚‚æ›´æ–°ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦ã„ãªã„æ™‚
       ret.methods = ["LENGTH"]
       ret.code = http1.code
       ret.size = http1.body.size
       ret.lastdetected = Time::now.to_i
     else
-      # ¹¹¿·¤µ¤ì¤Æ¤¤¤Ê¤¤¤È¤­
+      # æ›´æ–°ã•ã‚Œã¦ã„ãªã„ã¨ã
       if cache.method == "CACHE" then
 	ret.methods = cache.methods
       else
@@ -62,7 +62,7 @@ class Site
   def check_get(http1, cache = nil)
     website = Website::new(self)
     if http1['Last-Modified'] then
-      # Last-Modified¤¬¤¢¤ë»ş
+      # Last-ModifiedãŒã‚ã‚‹æ™‚
       website.methods = ["GET"]
       website.code = http1.code
       if http1['Content-Length'] then
@@ -73,7 +73,7 @@ class Site
       website.lastmodified = str2unixtime(http1['Last-Modified'])
       website.lastdetected = Time::now.to_i
     elsif http1.code == 0 || http1.code.between?(400, 599) then
-      # ¥¨¥é¡¼¤Ë¤Ê¤ë¤È¤­
+      # ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã¨ã
       website.lastmodified = cache.lastmodified if cache
       website.lastdetected = Time::now.to_i
       website.size = cache.size if cache
@@ -82,7 +82,7 @@ class Site
       website.code = http1.code
       website.keyword = cache.keyword if cache
     else
-      # ¥¨¥é¡¼¤Ë¤Ê¤é¤Ê¤¤¤±¤ÉLast-Modified¤¬Ìµ¤¤¤È¤­
+      # ã‚¨ãƒ©ãƒ¼ã«ãªã‚‰ãªã„ã‘ã©Last-ModifiedãŒç„¡ã„ã¨ã
       return nil
     end
     website.di['Authorized'] = TAMA::Agent
@@ -149,7 +149,7 @@ class Site
     website = Website::new(self)
     http1 = HTTP1::head(@checkurl, headers)
     if http1['Last-Modified'] then
-      # Last-Modified¤¬¤¢¤Ã¤¿¾ì¹ç
+      # Last-ModifiedãŒã‚ã£ãŸå ´åˆ
       website.lastmodified = str2unixtime(http1['Last-Modified'])
       website.lastdetected = Time::now.to_i
       if http1['Content-Length'] then
@@ -162,10 +162,10 @@ class Site
       website.code = http1.code
     elsif http1['Server'] =~ /Netscape-Enterprise/ &&
       http1.code.between?(400, 599) then
-      # ¥¨¥é¡¼¤À¤±¤ÉNetscape-Enterprise¤Î»ş¤ÏÌµ»ë
+      # ã‚¨ãƒ©ãƒ¼ã ã‘ã©Netscape-Enterpriseã®æ™‚ã¯ç„¡è¦–
       return nil
     elsif http1.code == 0 || http1.code.between?(400, 599) then
-      # ¥¨¥é¡¼¤Î»ş
+      # ã‚¨ãƒ©ãƒ¼ã®æ™‚
       website.lastmodified = cache.lastmodified if cache
       website.lastdetected = Time::now.to_i
       website.size = cache.size if cache
@@ -174,7 +174,7 @@ class Site
       website.code = http1.code
       website.keyword = cache.keyword if cache
     else
-      # ¥¨¥é¡¼¤¸¤ã¤Ê¤¤¤±¤É¹¹¿·»ş¹ï¤¬¼èÆÀ¤Ç¤­¤Ê¤«¤Ã¤¿¤È¤­
+      # ã‚¨ãƒ©ãƒ¼ã˜ã‚ƒãªã„ã‘ã©æ›´æ–°æ™‚åˆ»ãŒå–å¾—ã§ããªã‹ã£ãŸã¨ã
       return nil
     end
     website.di['Authorized'] = TAMA::Agent
@@ -187,7 +187,7 @@ class Site
     raise StandardError if http1 == nil
     website = Website::new(self)
     if http1.code == 0 || http1.code.between?(400, 599) then
-      # ¥¨¥é¡¼¤Ë¤Ê¤ë¤È¤­
+      # ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã¨ã
       website.lastmodified = cache.lastmodified if cache
       website.lastdetected = Time::now.to_i
       website.size = cache.size if cache
@@ -214,7 +214,7 @@ class Site
     regexp = Regexp.new(keyword)
     body = NKF::nkf('-e', http1.body.tr_s("\r", "\n"))
     if http1.code == 0 || http1.code.between?(400, 599) then
-      # ¥¨¥é¡¼¤Ë¤Ê¤ë¤È¤­
+      # ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã¨ã
       website.lastmodified = cache.lastmodified if cache
       website.lastdetected = Time::now.to_i
       website.size = cache.size if cache
@@ -229,7 +229,7 @@ class Site
 	  if matchdata then
 	    keyword = matchdata.to_a[1..-1].join(', ')
 	    if cache == nil then
-	      # ¥­¥ã¥Ã¥·¥å¤¬Â¸ºß¤·¤Ê¤¤¾ì¹ç
+	      # ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒå­˜åœ¨ã—ãªã„å ´åˆ
 	      website.methods = ["KEYWORD"]
 	      website.code = http1.code
 	    elsif cache.keyword != keyword then

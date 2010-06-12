@@ -1,4 +1,4 @@
-# ¡Ö¤¿¤Ş¤Æ¤Ğ¤³¡×version 1.1.66
+# ã€ŒãŸã¾ã¦ã°ã“ã€version 1.1.66
 # Copyright(C) 2000-2001 Hideki Ikemoto
 
 require 'tempfile'
@@ -58,7 +58,7 @@ class Antenna < Array
 	return
       end
     when 'file'
-      # Í×¤¹¤ë¤Ë¥Õ¥¡¥¤¥ë¤Î¥³¥Ô¡¼¡£
+      # è¦ã™ã‚‹ã«ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ”ãƒ¼ã€‚
       begin
 	File::open(url.path) do |rf|
 	  str = rf.read
@@ -79,7 +79,7 @@ class Antenna < Array
     parse(lines, antenna_url)
   end
   
-  # parse¥á¥½¥Ã¥É¤Ï¥µ¥Ö¥¯¥é¥¹¤ÇÄêµÁ¤¹¤ë
+  # parseãƒ¡ã‚½ãƒƒãƒ‰ã¯ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã§å®šç¾©ã™ã‚‹
   def parse(lines, antenna_url)
     puts "can't use Antenna#parse method, please override it."
     exit
@@ -98,7 +98,7 @@ class Antenna < Array
     end
     
     each {|site|
-      next if iterator? && yield(site) == false # block_given?¤Ï1.6¤«¤é
+      next if iterator? && yield(site) == false # block_given?ã¯1.6ã‹ã‚‰
       
       begin
 	case format
@@ -115,7 +115,7 @@ class Antenna < Array
       rescue ArgumentError
 	raise ArgumentError
       rescue StandardError
-	# Ìµ»ë¤¹¤ë
+	# ç„¡è¦–ã™ã‚‹
       end
     }
     if use_gzip == TRUE then

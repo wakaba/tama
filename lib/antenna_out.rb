@@ -1,4 +1,4 @@
-# ¡Ö¤¿¤Ş¤Æ¤Ğ¤³¡×version 1.1.66
+# ã€ŒãŸã¾ã¦ã°ã“ã€version 1.1.66
 # Copyright(C) 2000-2001 Hideki Ikemoto
 
 def antenna_out_REMOTE(option, remotes)
@@ -18,7 +18,7 @@ def antenna_out_LASTMODIFIED(option, remotes)
 end
 
 def antenna_out_VERSION(option, remotes)
-  "¡Ö<a href=\"#{TAMA::Official}\">¤¿¤Ş¤Æ¤Ğ¤³</a>¡×version #{TAMA::Version}"
+  "ã€Œ<a href=\"#{TAMA::Official}\">ãŸã¾ã¦ã°ã“</a>ã€version #{TAMA::Version}"
 end
 
 def antenna_out__default(option, remotes)

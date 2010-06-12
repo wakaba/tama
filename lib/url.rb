@@ -1,4 +1,4 @@
-# ¡Ö¤¿¤Ş¤Æ¤Ğ¤³¡×version 1.1.66
+# ã€ŒãŸã¾ã¦ã°ã“ã€version 1.1.66
 # Copyright(C) 2000-2001 Hideki Ikemoto
 
 class URL
@@ -18,7 +18,7 @@ class URL
     end
   end
   
-  # == ¤ÇÈæ³Ó¤Ç¤­¤ë¤è¤¦¤Ë¤¹¤ë¡£
+  # == ã§æ¯”è¼ƒã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹ã€‚
   def URL.normalize(str)
     url = URL::new(str)
     case url.scheme
@@ -83,7 +83,7 @@ class URL
     if url =~ %r!^(http|file|ftp)://! then
       parse(url)
     elsif url[0] == ?/ then
-      # ÀäÂĞ¥Ñ¥¹
+      # çµ¶å¯¾ãƒ‘ã‚¹
       case baseURL.scheme
       when "http", "ftp"
 	parse("#{baseURL.scheme}://#{baseURL.domain}:#{baseURL.port}#{url}")
@@ -93,7 +93,7 @@ class URL
     elsif url.empty? then
       parse(base)
     else
-      # ÁêÂĞ¥Ñ¥¹
+      # ç›¸å¯¾ãƒ‘ã‚¹
       basepath_a = baseURL.path.split(/\//, -1)
       basepath_a.shift
       basepath_a.pop
