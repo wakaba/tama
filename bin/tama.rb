@@ -66,6 +66,7 @@ if $OPT_output_directory_name then
   $outdir = $OPT_output_directory_name.dup
   $outdir.untaint
 end
+verbose("Output directory: #{$outdir}\n")
 
 if !File::exists?($outdir) || File::ftype($outdir) != 'directory' then
   puts "#{$outdir} はディレクトリではありません。"
@@ -76,6 +77,7 @@ $tama_cfg_path = "./conf/tama.cfg"
 if $OPT_config_file_name then
   $tama_cfg_path = $OPT_config_file_name
 end
+verbose("Config: #{$tama_cfg_path}\n")
 load $tama_cfg_path
 
 # セキュリティを強化
