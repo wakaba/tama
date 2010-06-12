@@ -13,3 +13,7 @@ $install_path = '.'
 	 "-e 's|^#%gzip_path%|$gzip = \"#{$gzip_path}\"|' " +
 	 "-e 's|^#%mail_address%|$mail_address = \"#{$mail_address}\"|' " +
 	 "< bin/tama.rb > #{$install_path}/tama.rb")
+
+## Author: Wakaba <w@suika.fam.cx>.
+##
+## License: Same as Tamatebako Version 1.1.66.
