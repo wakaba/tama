@@ -66,17 +66,6 @@ if $OPT_help == TRUE then
   exit
 end
 
-if $OPT_output_directory_name then
-  $outdir = $OPT_output_directory_name.dup
-  $outdir.untaint
-end
-verbose("Output directory: #{$outdir}\n")
-
-if !File::exists?($outdir) || File::ftype($outdir) != 'directory' then
-  puts "#{$outdir} はディレクトリではありません。"
-  exit
-end
-
 $tmpdir = './tmp/'
 
 $tama_cfg_path = "./conf/tama.cfg"
@@ -94,6 +83,17 @@ verbose("Temporary directory: #{$tmpdir}\n")
 
 if !File::exists?($tmpdir) || File::ftype($tmpdir) != 'directory' then
   puts "#{$tmpdir} はディレクトリではありません。"
+  exit
+end
+
+if $OPT_output_directory_name then
+  $outdir = $OPT_output_directory_name.dup
+  $outdir.untaint
+end
+verbose("Output directory: #{$outdir}\n")
+
+if !File::exists?($outdir) || File::ftype($outdir) != 'directory' then
+  puts "#{$outdir} はディレクトリではありません。"
   exit
 end
 
