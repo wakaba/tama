@@ -88,6 +88,8 @@ chmod go+w %{buildroot}%{tamalogpath}
 %{tamaconfinstallpath}/conf/sites.cfg.orig
 %{tamaconfinstallpath}/conf/remote.cfg.orig
 %{tamaconfinstallpath}/html/base.html.orig
+%{tamaoutputpath}
+%{tamatmppath}
 %{tamalogpath}
 %doc doc/
 
