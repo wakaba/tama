@@ -10,7 +10,7 @@ def antenna_out_REMOTE(option, remotes)
 end
 
 def antenna_out_LASTMODIFIED(option, remotes)
-  "Last-modified : " + File::mtime("./tmp/log").to_s
+  "Last-modified : " + File::mtime("#{$tmpdir}/log").to_s
 end
 
 def antenna_out_VERSION(option, remotes)
@@ -25,11 +25,11 @@ def antenna_out__default(option, remotes)
 
   case suffix
   when 'lirs'
-    sites = LIRS::open("./tmp/#{name}.#{suffix}")
+    sites = LIRS::open("#{$tmpdir}/#{name}.#{suffix}")
   when 'di'
-    sites = DI::open("./tmp/#{name}.#{suffix}")
+    sites = DI::open("#{$tmpdir}/#{name}.#{suffix}")
   when 'tama'
-    sites = DI::open("./tmp/#{name}.di")
+    sites = DI::open("#{$tmpdir}/#{name}.di")
   end
 
   if option['sort'] == "yes" then

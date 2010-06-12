@@ -31,14 +31,17 @@ require "sites.rb"
 
 def usage()
   puts "Usage: tama.rb [--noget] [--local] [--version] [--help] [--check]"
-  puts "               [--config-file-name file-name]"
-  puts "               [--output-directory-name dir-name]"
+  puts "               [--config-file-name FILE]"
+  puts "               [--output-directory-name DIRECTORY]"
+  puts "               [--temp-directory-name DIRECTORY]"
   puts "               [--force] [--verbose] [--debug]"
   puts "詳しい使い方は 'tama.rb --help'を実行して下さい。"
 end
 
 $USAGE = 'usage'
-parseArgs(0, nil, nil, "noget", "local", "version", "debug", "help", "check", "config-file-name:", "output-directory-name:", "force", "verbose")
+parseArgs(0, nil, nil, "noget", "local", "version", "debug", "help", "check",
+          "config-file-name:", "output-directory-name:",
+          "temp-directory-name:", "force", "verbose")
 
 if $OPT_version == TRUE then
   puts "#{TAMA::Version}"
@@ -47,8 +50,9 @@ end
 
 if $OPT_help == TRUE then
   puts "Usage: tama.rb [--noget] [--local] [--version] [--help] [--check]"
-  puts "               [--config-file-name file-name]"
-  puts "               [--output-directory-name dir-name]"
+  puts "               [--config-file-name FILE]"
+  puts "               [--output-directory-name DIRECTORY]"
+  puts "               [--temp-directory-name DIRECTORY]"
   puts "               [--force] [--verbose] [--debug]"
   puts
   puts "  --noget              更新情報を取得せずに出力だけします。"
@@ -56,6 +60,9 @@ if $OPT_help == TRUE then
   puts "  --version            バージョンを表示します。"
   puts "  --help               このヘルプを表示します。"
   puts "  --check              設定ファイルの書式をチェックします。"
+  puts "  --config-file-name FILE           tama.cfg のパスを指定します。"
+  puts "  --output-directory-name DIRECTORY 更新情報の出力先を指定します。"
+  puts "  --temp-directory-name DIRECTORY   一時データの出力先を指定します。"
   puts "  --force              更新時刻間隔の変更を無効にしてチェックします。"
   puts "  --verbose            詳細なメッセージを出力します。"
   puts "  --debug              デバッグ用のメッセージを出力します。"
@@ -70,6 +77,18 @@ verbose("Output directory: #{$outdir}\n")
 
 if !File::exists?($outdir) || File::ftype($outdir) != 'directory' then
   puts "#{$outdir} はディレクトリではありません。"
+  exit
+end
+
+$tmpdir = './tmp/'
+if $OPT_temp_directory_name then
+  $tmpdir = $OPT_temp_directory_name.dup
+  $tmpdir.untaint
+end
+verbose("Temporary directory: #{$tmpdir}\n")
+
+if !File::exists?($tmpdir) || File::ftype($tmpdir) != 'directory' then
+  puts "#{$tmpdir} はディレクトリではありません。"
   exit
 end
 
@@ -91,9 +110,9 @@ if $OPT_check == TRUE then
   exit
 end
 
-TAMA_REMOTE_FILE = "./tmp/_remote.di"
-TAMA_GET_FILE = "./tmp/_sites_get.di"
-TAMA_SITES_FILE = "./tmp/_sites.di"
+TAMA_REMOTE_FILE = "#{$tmpdir}/_remote.di"
+TAMA_GET_FILE = "#{$tmpdir}/_sites_get.di"
+TAMA_SITES_FILE = "#{$tmpdir}/_sites.di"
 
 $start = Time::now.to_i
 
@@ -301,12 +320,12 @@ def out_tama()
     antenna.save("#{$outdir}/#{savepath}.lirs.gz", "LIRS", TRUE)
     antenna.save("#{$outdir}/#{savepath}.di.gz", "DI", TRUE)
     antenna.save("#{$outdir}/#{savepath}.txt.gz", "HINA", TRUE)
-    antenna.save("./tmp/#{savepath}.lirs", "LIRS")
-    antenna.save("./tmp/#{savepath}.di", "DI")
-    antenna.save("./tmp/#{savepath}.txt", "HINA")
-    antenna.save("./tmp/#{savepath}.lirs.gz", "LIRS", TRUE)
-    antenna.save("./tmp/#{savepath}.di.gz", "DI", TRUE)
-    antenna.save("./tmp/#{savepath}.txt.gz", "HINA", TRUE)
+    antenna.save("#{$tmpdir}/#{savepath}.lirs", "LIRS")
+    antenna.save("#{$tmpdir}/#{savepath}.di", "DI")
+    antenna.save("#{$tmpdir}/#{savepath}.txt", "HINA")
+    antenna.save("#{$tmpdir}/#{savepath}.lirs.gz", "LIRS", TRUE)
+    antenna.save("#{$tmpdir}/#{savepath}.di.gz", "DI", TRUE)
+    antenna.save("#{$tmpdir}/#{savepath}.txt.gz", "HINA", TRUE)
   }
 end
 
@@ -411,7 +430,7 @@ if $OPT_noget != TRUE then
   sites_get.save(TAMA_GET_FILE, "DI") {|site| site.method != "REMOTE" }
   sites_get.save(TAMA_SITES_FILE, "DI")
   
-  File::open("./tmp/log", "w") do |f|
+  File::open("#{$tmpdir}/log", "w") do |f|
     # ログを書き込む
     f.puts ""
   end
