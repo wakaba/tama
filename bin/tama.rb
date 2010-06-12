@@ -26,7 +26,9 @@ require "tama_m.rb"
 require "sites.rb"
 
 #%gzip_path%
+#%conf_path%
 #%out_path%
+#%tmp_path%
 #%antenna_url%
 
 def usage()
@@ -68,10 +70,9 @@ end
 
 verbose("Current directory: #{Dir::pwd}\n")
 
-$remote_cfg_path = './conf/remote.cfg'
-$tmpdir = './tmp/'
+$remote_cfg_path = "#{$confdir}/remote.cfg"
 
-$tama_cfg_path = "./conf/tama.cfg"
+$tama_cfg_path = "#{$confdir}/tama.cfg"
 if $OPT_config_file_name then
   $tama_cfg_path = $OPT_config_file_name
 end
