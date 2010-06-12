@@ -71,9 +71,9 @@ end
 
 verbose("Current directory: #{Dir::pwd}\n")
 
-$remote_cfg_path = "#{$confdir}/remote.cfg"
+$remote_cfg_path = "#{$confdir}/conf/remote.cfg"
 
-$tama_cfg_path = "#{$confdir}/tama.cfg"
+$tama_cfg_path = "#{$confdir}/conf/tama.cfg"
 if $OPT_config_file_name then
   $tama_cfg_path = $OPT_config_file_name
 end
