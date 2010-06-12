@@ -1,4 +1,4 @@
-# ¡Ö¤¿¤Ş¤Æ¤Ğ¤³¡×version 1.1.66
+# ã€ŒãŸã¾ã¦ã°ã“ã€version 1.1.66
 # Copyright(C) 2000-2001 Hideki Ikemoto
 
 require 'parsearg'
@@ -22,7 +22,7 @@ if $0.index('/') != nil then
   Dir::chdir $0[0..$0.rindex('/')]
 end
 
-# ¥Õ¥¡¥¤¥ë¤Î¥³¥Ô¡¼
+# ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ”ãƒ¼
 def copy(from_path, to_path)
   str = ""
   File::open(from_path) do |rf|
@@ -34,7 +34,7 @@ def copy(from_path, to_path)
   end
 end
 
-# ¥¤¥ó¥¹¥È¡¼¥ë¤¹¤ë
+# ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹
 def install()
   if not exist?("#{$install_path}") then
     Dir::mkdir($install_path, 0755)
@@ -60,58 +60,58 @@ def install()
     Dir::mkdir($out_path, 0755)
   end
   
-  # ¥Õ¥¡¥¤¥ë¤Î¥³¥Ô¡¼(¼êÈ´¤­^^;)
+  # ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ”ãƒ¼(æ‰‹æŠœã^^;)
   Dir::foreach("lib") {|file|
     next if file == "."
     next if file == ".."
-    puts("#{file}¤ò¥³¥Ô¡¼Ãæ...")
+    puts("#{file}ã‚’ã‚³ãƒ”ãƒ¼ä¸­...")
     copy("lib/#{file}", "#{$install_path}/lib/#{file}")
   }
   
-  puts("sites.cfg¤ò¥³¥Ô¡¼Ãæ...")
+  puts("sites.cfgã‚’ã‚³ãƒ”ãƒ¼ä¸­...")
   if exist?("#{$install_path}/conf/sites.cfg") then
-    puts "sites.cfg¤¬¸«ÉÕ¤«¤ê¤Ş¤·¤¿¡£"
-    puts "ÀßÄê¤Î¸«ËÜ¤Ïsites.cfg.orig¤È¤·¤Æ¥³¥Ô¡¼¤µ¤ì¤Ş¤¹¡£"
+    puts "sites.cfgãŒè¦‹ä»˜ã‹ã‚Šã¾ã—ãŸã€‚"
+    puts "è¨­å®šã®è¦‹æœ¬ã¯sites.cfg.origã¨ã—ã¦ã‚³ãƒ”ãƒ¼ã•ã‚Œã¾ã™ã€‚"
     copy("conf/sites.cfg", "#{$install_path}/conf/sites.cfg.orig")
   else
     copy("conf/sites.cfg", "#{$install_path}/conf/sites.cfg")
   end
   
-  puts("remote.cfg¤ò¥³¥Ô¡¼Ãæ...")
+  puts("remote.cfgã‚’ã‚³ãƒ”ãƒ¼ä¸­...")
   if exist?("#{$install_path}/conf/remote.cfg") then
-    puts "remote.cfg¤¬¸«ÉÕ¤«¤ê¤Ş¤·¤¿¡£"
-    puts "ÀßÄê¤Î¸«ËÜ¤Ïremote.cfg.orig¤È¤·¤Æ¥³¥Ô¡¼¤µ¤ì¤Ş¤¹¡£"
+    puts "remote.cfgãŒè¦‹ä»˜ã‹ã‚Šã¾ã—ãŸã€‚"
+    puts "è¨­å®šã®è¦‹æœ¬ã¯remote.cfg.origã¨ã—ã¦ã‚³ãƒ”ãƒ¼ã•ã‚Œã¾ã™ã€‚"
     copy("conf/remote.cfg", "#{$install_path}/conf/remote.cfg.orig")
   else
     copy("conf/remote.cfg", "#{$install_path}/conf/remote.cfg")
   end
   
-  puts("base.html¤ò¥³¥Ô¡¼Ãæ...")
+  puts("base.htmlã‚’ã‚³ãƒ”ãƒ¼ä¸­...")
   if exist?("#{$install_path}/html/base.html") then
-    puts "base.html¤¬¸«ÉÕ¤«¤ê¤Ş¤·¤¿¡£"
-    puts "ÀßÄê¤Î¸«ËÜ¤Ïbase.html.orig¤È¤·¤Æ¥³¥Ô¡¼¤µ¤ì¤Ş¤¹¡£"
+    puts "base.htmlãŒè¦‹ä»˜ã‹ã‚Šã¾ã—ãŸã€‚"
+    puts "è¨­å®šã®è¦‹æœ¬ã¯base.html.origã¨ã—ã¦ã‚³ãƒ”ãƒ¼ã•ã‚Œã¾ã™ã€‚"
     copy("html/base.html", "#{$install_path}/html/base.html.orig")
   else
     copy("html/base.html", "#{$install_path}/html/base.html")
   end
   
-  puts("tama.cfg¤ò¥³¥Ô¡¼Ãæ...")
+  puts("tama.cfgã‚’ã‚³ãƒ”ãƒ¼ä¸­...")
   if exist?("#{$install_path}/conf/tama.cfg") then
-    puts "tama.cfg¤¬¸«ÉÕ¤«¤ê¤Ş¤·¤¿¡£"
-    puts "ÀßÄê¤Î¸«ËÜ¤Ïtama.cfg.orig¤È¤·¤Æ¥³¥Ô¡¼¤µ¤ì¤Ş¤¹¡£"
+    puts "tama.cfgãŒè¦‹ä»˜ã‹ã‚Šã¾ã—ãŸã€‚"
+    puts "è¨­å®šã®è¦‹æœ¬ã¯tama.cfg.origã¨ã—ã¦ã‚³ãƒ”ãƒ¼ã•ã‚Œã¾ã™ã€‚"
     copy("conf/tama.cfg", "#{$install_path}/conf/tama.cfg.orig")
   else
     copy("conf/tama.cfg", "#{$install_path}/conf/tama.cfg")
   end
   
-  puts("tama.rb¤ò¥³¥Ô¡¼Ãæ...")
+  puts("tama.rbã‚’ã‚³ãƒ”ãƒ¼ä¸­...")
   system("sed -e 's|^#%ruby_path%|#!#{$ruby_path}|' " +
 	 "-e 's|^#%out_path%|$outdir = \"#{$out_path}\"|' " +
 	 "-e 's|^#%antenna_url%|$referer = \"#{$antenna_url}\"|' " +
 	 "-e 's|^#%gzip_path%|$gzip = \"#{$gzip_path}\"|' " +
 	 "< bin/tama.rb > #{$install_path}/tama.rb")
   
-  # ¼Â¹Ô²ÄÇ½¤Ë¤¹¤ë
+  # å®Ÿè¡Œå¯èƒ½ã«ã™ã‚‹
   mode = File::stat("#{$install_path}/tama.rb").mode
   File::chmod(mode | 0700, "#{$install_path}/tama.rb")
   
@@ -125,25 +125,25 @@ def install()
   end
   
   puts
-  puts "¥¤¥ó¥¹¥È¡¼¥ë¤¬½ªÎ»¤·¤Ş¤·¤¿¡£"
-  puts "ÀßÄê¾ğÊó¤Ï#{$setup}¤ËÊİÂ¸¤µ¤ì¤Ş¤·¤¿¡£"
+  puts "ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ãŒçµ‚äº†ã—ã¾ã—ãŸã€‚"
+  puts "è¨­å®šæƒ…å ±ã¯#{$setup}ã«ä¿å­˜ã•ã‚Œã¾ã—ãŸã€‚"
 end
 
-# ¤³¤³¤«¤é¥¹¥¿¡¼¥È
+# ã“ã“ã‹ã‚‰ã‚¹ã‚¿ãƒ¼ãƒˆ
 $ruby_path = ""
 $gzip_path = ""
 $install_path = ""
 $out_path = ""
 
-puts "¡Ö¤¿¤Ş¤Æ¤Ğ¤³¡×version #{$VERSION}¤Î¥¤¥ó¥¹¥È¡¼¥ë¤ò»Ï¤á¤Ş¤¹¡£"
-puts "¤¤¤¯¤Ä¤«¤Î¥Õ¥¡¥¤¥ë¤ò¾å½ñ¤­¤·¤Ş¤¹¤Î¤Ç¡¢"
-puts "Ç°¤Î¤¿¤á¥Ğ¥Ã¥¯¥¢¥Ã¥×¤ò¼è¤Ã¤Æ²¼¤µ¤¤¡£"
-puts "(Enter¥­¡¼¤ÇÀè¤Ë¿Ê¤ß¤Ş¤¹)"
+puts "ã€ŒãŸã¾ã¦ã°ã“ã€version #{$VERSION}ã®ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã‚’å§‹ã‚ã¾ã™ã€‚"
+puts "ã„ãã¤ã‹ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸Šæ›¸ãã—ã¾ã™ã®ã§ã€"
+puts "å¿µã®ãŸã‚ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã‚’å–ã£ã¦ä¸‹ã•ã„ã€‚"
+puts "(Enterã‚­ãƒ¼ã§å…ˆã«é€²ã¿ã¾ã™)"
 $stdin.readline
 
-# $setup(¥Ç¥Õ¥©¥ë¥È¤Ï~/.tama_setup)¤ò¸¡º÷
+# $setup(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯~/.tama_setup)ã‚’æ¤œç´¢
 if exist?($setup) then
-  puts "#{$setup}¤¬¸«¤Ä¤«¤ê¤Ş¤·¤¿¡£"
+  puts "#{$setup}ãŒè¦‹ã¤ã‹ã‚Šã¾ã—ãŸã€‚"
   lines = File::readlines($setup)
   lines.each {|line|
     key, value = line.chomp.split(/=/)
@@ -162,113 +162,113 @@ if exist?($setup) then
       $tama_version = value
     end
   }
-  puts "°ÊÁ°¤ÎÀßÄê¾ğÊó¤¬¸«ÉÕ¤«¤ê¤Ş¤·¤¿¡£"
+  puts "ä»¥å‰ã®è¨­å®šæƒ…å ±ãŒè¦‹ä»˜ã‹ã‚Šã¾ã—ãŸã€‚"
   puts 
-  puts "¥Ğ¡¼¥¸¥ç¥ó     : #{$tama_version}"
+  puts "ãƒãƒ¼ã‚¸ãƒ§ãƒ³     : #{$tama_version}"
   puts "ruby           : #{$ruby_path}"
   puts "gzip           : #{$gzip_path}"
-  puts "ÀßÄê¥Õ¥¡¥¤¥ë   : #{$install_path}"
-  puts "½ĞÎÏÀè         : #{$out_path}"
+  puts "è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«   : #{$install_path}"
+  puts "å‡ºåŠ›å…ˆ         : #{$out_path}"
   puts "URL            : #{$antenna_url}"
   
   puts
-  puts "°Ê¾å¤ÎÀßÄê¤Ç¤è¤í¤·¤¤¤Ç¤¹¤«? [Y/n]"
+  puts "ä»¥ä¸Šã®è¨­å®šã§ã‚ˆã‚ã—ã„ã§ã™ã‹? [Y/n]"
   answer = $stdin.readline.chomp
   if answer != "n" && answer != "N" then
     install()
     exit
   end
 else
-  puts "#{$setup}¤¬¸«¤Ä¤«¤ê¤Ş¤»¤ó¤Ç¤·¤¿¡£"
+  puts "#{$setup}ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚"
 end
 
-# ruby¤Î¾ì½ê¤ò¸¡º÷
-puts "ruby¤òÃµ¤·¤Æ¤¤¤Ş¤¹..."
+# rubyã®å ´æ‰€ã‚’æ¤œç´¢
+puts "rubyã‚’æ¢ã—ã¦ã„ã¾ã™..."
 $ruby_path = `which ruby`
 
 if $ruby_path.empty? then
-  puts "ruby¤¬¸«ÉÕ¤«¤ê¤Ş¤»¤ó¤Ç¤·¤¿¡£ruby¤Î¥Ñ¥¹¤òÆşÎÏ¤·¤Æ²¼¤µ¤¤¡£"
+  puts "rubyãŒè¦‹ä»˜ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚rubyã®ãƒ‘ã‚¹ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚"
   print "> "
   $ruby_path = $stdin.readline.chomp
 else
   $ruby_path.chomp!
-  puts "ruby¤¬ '#{$ruby_path}' ¤Ë¸«ÉÕ¤«¤ê¤Ş¤·¤¿¡£¤³¤ì¤Ç¤è¤í¤·¤¤¤Ç¤¹¤«? [Y/n]"
+  puts "rubyãŒ '#{$ruby_path}' ã«è¦‹ä»˜ã‹ã‚Šã¾ã—ãŸã€‚ã“ã‚Œã§ã‚ˆã‚ã—ã„ã§ã™ã‹? [Y/n]"
   answer = $stdin.readline.chomp
   if answer == "n" || answer == "N" then
-    puts "ruby¤Î¥Ñ¥¹¤òÆşÎÏ¤·¤Æ²¼¤µ¤¤¡£"
+    puts "rubyã®ãƒ‘ã‚¹ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚"
     print "> "
     $ruby_path = $stdin.readline.chomp
   end
 end
 
-# ruby¤Î¥Ğ¡¼¥¸¥ç¥ó¤ò¥Á¥§¥Ã¥¯
+# rubyã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ãƒã‚§ãƒƒã‚¯
 ruby_version_str = `#{$ruby_path} --version`
 if ruby_version_str.empty? then
-  puts "ruby¤Î¥Ğ¡¼¥¸¥ç¥ó¤¬¼èÆÀ¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£½ªÎ»¤·¤Ş¤¹¡£"
+  puts "rubyã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒå–å¾—ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚çµ‚äº†ã—ã¾ã™ã€‚"
   exit(1)
 else
   ruby_version_str =~ /ruby ([0-9\.]+)/
   $ruby_version = $1
 end
 
-# gzip¤Î¾ì½ê¤ò¸¡º÷
+# gzipã®å ´æ‰€ã‚’æ¤œç´¢
 puts 
-puts "gzip¤òÃµ¤·¤Æ¤¤¤Ş¤¹..."
+puts "gzipã‚’æ¢ã—ã¦ã„ã¾ã™..."
 $gzip_path = `which gzip`
 
 if $gzip_path.empty? then
-  puts "gzip¤¬¸«ÉÕ¤«¤ê¤Ş¤»¤ó¤Ç¤·¤¿¡£gzip¤Î¥Ñ¥¹¤òÆşÎÏ¤·¤Æ²¼¤µ¤¤¡£"
+  puts "gzipãŒè¦‹ä»˜ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚gzipã®ãƒ‘ã‚¹ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚"
   print "> "
   $gzip_path = $stdin.readline.chomp
 else
   $gzip_path.chomp!
-  puts "gzip¤¬ '#{$gzip_path}' ¤Ë¸«ÉÕ¤«¤ê¤Ş¤·¤¿¡£¤³¤ì¤Ç¤è¤í¤·¤¤¤Ç¤¹¤«? [Y/n]"
+  puts "gzipãŒ '#{$gzip_path}' ã«è¦‹ä»˜ã‹ã‚Šã¾ã—ãŸã€‚ã“ã‚Œã§ã‚ˆã‚ã—ã„ã§ã™ã‹? [Y/n]"
   answer = $stdin.readline.chomp
   if answer == "n" || answer == "N" then
-    puts "gzip¤Î¥Ñ¥¹¤òÆşÎÏ¤·¤Æ²¼¤µ¤¤¡£"
+    puts "gzipã®ãƒ‘ã‚¹ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚"
     print "> "
     $gzip_path = $stdin.readline.chomp
   end
 end
 
-# ¥¤¥ó¥¹¥È¡¼¥ë¤Î¾ì½ê
+# ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã®å ´æ‰€
 puts
-puts "ÀßÄê¥Õ¥¡¥¤¥ë¤ò¥¤¥ó¥¹¥È¡¼¥ë¤¹¤ë¥Ç¥£¥ì¥¯¥È¥ê¤òÆşÎÏ¤·¤Æ²¼¤µ¤¤¡£[#{ENV['HOME']}/antenna]"
+puts "è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚[#{ENV['HOME']}/antenna]"
 print "> "
 $install_path = $stdin.readline.chomp
 if $install_path.empty? then
   $install_path = "#{ENV['HOME']}/antenna"
 end
 
-# HTML¤Î½ĞÎÏÀè
+# HTMLã®å‡ºåŠ›å…ˆ
 puts
-puts "½ĞÎÏÀè¥Ç¥£¥ì¥¯¥È¥ê¤òÆşÎÏ¤·¤Æ²¼¤µ¤¤¡£[#{ENV['HOME']}/public_html/antenna]"
+puts "å‡ºåŠ›å…ˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚[#{ENV['HOME']}/public_html/antenna]"
 print "> "
 $out_path = $stdin.readline.chomp
 if $out_path.empty? then
   $out_path = "#{ENV['HOME']}/public_html/antenna"
 end
 
-# ¥¢¥ó¥Æ¥Ê¤ÎURL(HTTP_REFERER¤ÇÁ÷¤é¤ì¤ë)
+# ã‚¢ãƒ³ãƒ†ãƒŠã®URL(HTTP_REFERERã§é€ã‚‰ã‚Œã‚‹)
 puts
-puts "¥¢¥ó¥Æ¥Ê¤ÎURL¤òÆşÎÏ¤·¤Æ²¼¤µ¤¤¡£[]"
+puts "ã‚¢ãƒ³ãƒ†ãƒŠã®URLã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚[]"
 print "> "
 $antenna_url = $stdin.readline.chomp
 
 puts 
 puts "ruby           : #{$ruby_path} (#{$ruby_version})"
 puts "gzip           : #{$gzip_path}"
-puts "ÀßÄê¥Õ¥¡¥¤¥ë   : #{$install_path}"
-puts "½ĞÎÏÀè         : #{$out_path}"
+puts "è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«   : #{$install_path}"
+puts "å‡ºåŠ›å…ˆ         : #{$out_path}"
 puts "URL            : #{$antenna_url}"
 
 puts
-puts "°Ê¾å¤ÎÀßÄê¤Ç¤è¤í¤·¤¤¤Ç¤¹¤«? [Y/n]"
+puts "ä»¥ä¸Šã®è¨­å®šã§ã‚ˆã‚ã—ã„ã§ã™ã‹? [Y/n]"
 answer = $stdin.readline.chomp
 if answer == "n" || answer == "N" then
-  puts "½ªÎ»¤·¤Ş¤¹¡£"
+  puts "çµ‚äº†ã—ã¾ã™ã€‚"
   exit(1)
 end
 
-# ¥¤¥ó¥¹¥È¡¼¥ë³«»Ï
+# ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«é–‹å§‹
 install()
