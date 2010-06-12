@@ -148,7 +148,7 @@ class Site
   
   def check_head(cache = nil)
     headers = {}
-    headers['Referer'] = $referer unless $referer.nil? || $referer.empty?
+    #headers['Referer'] = $referer unless $referer.nil? || $referer.empty?
 
     website = Website::new(self)
     http1 = HTTP1::head(@checkurl, headers)

@@ -211,7 +211,7 @@ def get_site(site, cache, remote)
   
   # GET取得
   headers = {}
-  headers['Referer'] = $referer unless $referer.nil? || $referer.empty?
+  #headers['Referer'] = $referer unless $referer.nil? || $referer.empty?
   http1_get = HTTP1::get(site.checkurl, headers)
   
   # DIによる判定

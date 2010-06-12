@@ -43,9 +43,9 @@ class Antenna < Array
   
   def read(antenna_src, antenna_url = "")
     header = {}
-    if $referer != "" then
-      header['Referer'] = $referer
-    end
+    #if $referer != "" then
+    #  header['Referer'] = $referer
+    #end
     
     url = URL::new(antenna_src, antenna_url)
     str = ""
