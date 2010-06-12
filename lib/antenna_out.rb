@@ -10,7 +10,7 @@ def antenna_out_REMOTE(option, remotes)
 end
 
 def antenna_out_LASTMODIFIED(option, remotes)
-  file_time = File::mtime("#{$tmpdir}/log")
+  file_time = File::mtime($tama_log_path)
   file_time_s = file_time.to_s
   file_time.utc
   file_time_v = file_time.strftime("%Y-%m-%dT%H:%M:%SZ")

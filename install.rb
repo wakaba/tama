@@ -109,6 +109,7 @@ def install()
 	 "-e 's|^#%out_path%|$outdir = \"#{$out_path}\"|' " +
 	 "-e 's|^#%conf_path%|$confdir = \"#{$conf_install_path}\"|' " +
 	 "-e 's|^#%tmp_path%|$tmpdir = \"#{$tmp_path}\"|' " +
+	 "-e 's|^#%log_path%|$tama_log_path = \"#{$log_path}\"|' " +
 	 "-e 's|^#%antenna_url%|$referer = \"#{$antenna_url}\"|' " +
 	 "-e 's|^#%gzip_path%|$gzip = \"#{$gzip_path}\"|' " +
 	 "< bin/tama.rb > #{$path_prefix}#{$install_path}/tama.rb")
@@ -126,6 +127,7 @@ def install()
     f.puts "CONF_INSTALL_PATH=#{$conf_install_path}"
     f.puts "OUT_PATH=#{$out_path}"
     f.puts "TMP_PATH=#{$tmp_path}"
+    f.puts "LOG_PATH=#{$log_path}"
     f.puts "ANTENNA_URL=#{$antenna_url}"
   end
   
@@ -142,6 +144,7 @@ $install_path = ""
 $conf_install_path = ""
 $out_path = ""
 $tmp_path = "./tmp/"
+$log_path = "#{$tmp_path}/log"
 
 puts "「たまてばこ」version #{$VERSION}のインストールを始めます。"
 puts "いくつかのファイルを上書きしますので、"
@@ -171,6 +174,9 @@ if exist?($setup) then
       $out_path = value
     when "TMP_PATH"
       $tmp_path = value
+      if $log_path.empty? then $log_path = "#{$tmp_path}/log" end
+    when "LOG_PATH"
+      $log_path = value
     when "ANTENNA_URL"
       $antenna_url = value
     when "TAMA_VERSION"
@@ -187,6 +193,7 @@ if exist?($setup) then
   puts "設定ファイル   : #{$conf_install_path}"
   puts "出力先         : #{$out_path}"
   puts "一時出力先     : #{$tmp_path}"
+  puts "ログファイル   : #{$log_path}"
   puts "URL            : #{$antenna_url}"
   
   puts
@@ -266,7 +273,6 @@ print "> "
 $out_path = $stdin.readline.chomp
 if $out_path.empty? then
   $out_path = "#{ENV['HOME']}/public_html/antenna"
-  $tmp_path = "./tmp/"
 end
 
 # アンテナのURL(HTTP_REFERERで送られる)

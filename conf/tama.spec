@@ -37,6 +37,7 @@ simple configuration format.
 %define tamaconfinstallpath /etc/tama/
 %define tamaoutputpath /var/tama/antenna/
 %define tamatmppath /var/tama/cache/
+%define tamalogpath /var/log/tama.log
 %define __ruby %(which ruby)
 
 %prep
@@ -51,6 +52,7 @@ echo "INSTALL_PATH=%{tamainstallpath}" >> install.conf
 echo "CONF_INSTALL_PATH=%{tamaconfinstallpath}" >> install.conf
 echo "OUT_PATH=%{tamaoutputpath}" >> install.conf
 echo "TMP_PATH=%{tamatmppath}" >> install.conf
+echo "LOG_PATH=%{tamalogpath}" >> install.conf
 echo "ANTENNA_URL=file:///tama/" >> install.conf
 
 echo "" > installinput.dat
@@ -64,6 +66,7 @@ mkdir -p %{buildroot}%{tamainstallpath}
 mkdir -p %{buildroot}%{tamaconfinstallpath}
 mkdir -p %{buildroot}%{tamaoutputpath}
 mkdir -p %{buildroot}%{tamatmppath}
+mkdir -p %{buildroot}/var/log
 
 cat installinput.dat | ruby install.rb -f install.conf
 
@@ -71,6 +74,8 @@ cd %{buildroot}%{tamaconfinstallpath} && mv conf/tama.cfg conf/tama.cfg.orig
 cd %{buildroot}%{tamaconfinstallpath} && mv conf/sites.cfg conf/sites.cfg.orig
 cd %{buildroot}%{tamaconfinstallpath} && mv conf/remote.cfg conf/remote.cfg.orig
 cd %{buildroot}%{tamaconfinstallpath} && mv html/base.html html/base.html.orig
+touch %{buildroot}%{tamalogpath}
+chmod go+w %{buildroot}%{tamalogpath}
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
@@ -83,6 +88,7 @@ cd %{buildroot}%{tamaconfinstallpath} && mv html/base.html html/base.html.orig
 %{tamaconfinstallpath}/conf/sites.cfg.orig
 %{tamaconfinstallpath}/conf/remote.cfg.orig
 %{tamaconfinstallpath}/html/base.html.orig
+%{tamalogpath}
 %doc doc/
 
 %changelog
