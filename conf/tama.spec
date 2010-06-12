@@ -6,7 +6,7 @@
 Name:      tama
 Summary:   TAMATEBAKO: A Web Page Update Checker (Antenna)
 Version:   %{version}
-Release:   1.suika
+Release:   2.suika
 License:   「たまてばこ」を利用した際のトラブルについて作者は一切の責任を負いません。再配布、改造は自由ですが、著作権表示やこの条件リストがある場合はそれを削除しない事。
 
 Group:     Applications/Internet
@@ -88,5 +88,8 @@ cd %{buildroot}%{tamaconfinstallpath} && mv html/base.html html/base.html.orig
 %doc doc/
 
 %changelog
+* Sat Jun 12 2010 Wakaba <w@suika.fam.cx> - 1.1.66mod1-2.suika
+- Rebuilt.
+
 * Sat Jun 12 2010 Wakaba <w@suika.fam.cx> - 1.1.66mod1-1.suika
 - Initial build.
