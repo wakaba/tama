@@ -66,6 +66,8 @@ if $OPT_help == TRUE then
   exit
 end
 
+verbose("Current directory: #{Dir::pwd}\n")
+
 $remote_cfg_path = './conf/remote.cfg'
 $tmpdir = './tmp/'
 
@@ -85,7 +87,7 @@ end
 verbose("Temporary directory: #{$tmpdir}\n")
 
 if !File::exists?($tmpdir) || File::ftype($tmpdir) != 'directory' then
-  abort "#{$tmpdir} はディレクトリではありません。"
+  abort "#{$0}: #{$tmpdir} はディレクトリではありません。"
 end
 
 if $OPT_output_directory_name then
@@ -95,7 +97,7 @@ end
 verbose("Output directory: #{$outdir}\n")
 
 if !File::exists?($outdir) || File::ftype($outdir) != 'directory' then
-  abort "#{$outdir} はディレクトリではありません。"
+  abort "#{$0}: #{$outdir} はディレクトリではありません。"
 end
 
 # セキュリティを強化
