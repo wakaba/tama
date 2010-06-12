@@ -48,7 +48,6 @@ if $OPT_version == TRUE then
 end
 
 if $OPT_help == TRUE then
-  puts "#{TAMA::Agent}"
   puts "Usage: tama.rb [--noget] [--local] [--version] [--help] [--check]"
   puts "               [--config-file-name FILE]"
   puts "               [--output-directory-name DIRECTORY]"
