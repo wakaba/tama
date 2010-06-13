@@ -20,11 +20,11 @@ class Remote
       when "%format%"
 	case self.dataformat
 	when "LIRS"
-	  '<a href="http://amano.haun.org/LIRS.html">LIRS</a>'
+	  '<a href="http://web.archive.org/web/20020205080215/http://amano.haun.org/LIRS.html">LIRS</a>'
 	when "DI"
-	  '<a href="http://docinfo.jin.gr.jp/">DI</a>'
+	  '<a href="http://kohgushi.fastwave.gr.jp/hina-doc/">DI</a>'
 	when "HINA"
-	  '<a href="http://masshy.fastwave.gr.jp/hina/release/">hina.txt</a>'
+	  '<a href="http://masshy.fastwave.gr.jp/hina/release/usage.html#protocol">hina.txt</a>'
 	else
 	  self.dataformat
 	end
