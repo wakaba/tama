@@ -95,6 +95,15 @@ def install()
     copy("html/base.html", "#{$path_prefix}#{$conf_install_path}/html/base.html")
   end
   
+  puts("base.atomをコピー中...")
+  if exist?("#{$path_prefix}#{$conf_install_path}/html/base.atom") then
+    puts "base.atomが見付かりました。"
+    puts "設定の見本はbase.atom.origとしてコピーされます。"
+    copy("html/base.atom", "#{$path_prefix}#{$conf_install_path}/html/base.atom.orig")
+  else
+    copy("html/base.atom", "#{$path_prefix}#{$conf_install_path}/html/base.atom")
+  end
+  
   puts("tama.cfgをコピー中...")
   if exist?("#{$path_prefix}#{$conf_install_path}/conf/tama.cfg") then
     puts "tama.cfgが見付かりました。"
