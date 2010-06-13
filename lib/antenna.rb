@@ -93,7 +93,7 @@ class Antenna < Array
       str << "HINA/2.1\r\n"
       str << "User-Agent: #{TAMA::Agent}\r\n"
       str << "Date: #{Time::now.gmtime.strftime('%a, %d %b %Y %X GMT')}\r\n"
-      str << "Content-Type: text/plain; charset=EUC-JP\r\n"
+      str << "Content-Type: text/plain; charset=UTF-8\r\n"
       str << "\r\n"
     end
     
