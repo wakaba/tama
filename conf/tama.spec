@@ -64,6 +64,8 @@ mkdir -p %{buildroot}%{tamainstallpath}
 mkdir -p %{buildroot}%{tamaconfinstallpath}
 mkdir -p %{buildroot}%{tamaoutputpath}
 mkdir -p %{buildroot}%{tamatmppath}
+chmod go+w %{buildroot}%{tamaoutputpath}
+chmod go+w %{buildroot}%{tamatmppath}
 
 cat installinput.dat | ruby install.rb -f install.conf
 
