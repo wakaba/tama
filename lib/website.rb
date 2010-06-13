@@ -364,6 +364,7 @@ class Website
     error = (self.method == "ERROR" || @lastmodified == 0 ? TRUE : FALSE)
     
     time = Time::at(@lastmodified + tz2lag(tz)).gmtime
+    utctime = Time::at(@lastmodified).gmtime
     formatstr =~ /^([^%]*)(.*)$/
     ret = $1 + $2.gsub(/%([^%]*)%/) {|pattern|
       case $1
@@ -371,6 +372,20 @@ class Website
 	if error == TRUE then "----" else "%04d" % time.year end
       when "month", "day", "hour", "min", "sec"
 	if error == TRUE then "--" else "%02d" % time.send($1) end
+      when "htmltimestart"
+        if error == TRUE then
+          "<span class=time>"
+        else
+          sprintf "<time datetime=%04d-%02d-%02dT%02d:%02d:%02dZ>",
+              utctime.year, utctime.month, utctime.day,
+              utctime.hour, utctime.min, utctime.sec
+        end
+      when "htmltimeend"
+        if error == TRUE then
+          "</span>"
+        else
+          "</time>"
+        end
       when "url"
 	if error == FALSE && suffix != nil then
 	  suffix =~ /^([^%]*)(.*)$/
