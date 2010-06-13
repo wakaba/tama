@@ -6,7 +6,7 @@
 Name:      tama
 Summary:   TAMATEBAKO: A Web Page Update Checker (Antenna)
 Version:   %{version}
-Release:   2.suika
+Release:   3.suika
 License:   「たまてばこ」を利用した際のトラブルについて作者は一切の責任を負いません。再配布、改造は自由ですが、著作権表示やこの条件リストがある場合はそれを削除しない事。
 
 Group:     Applications/Internet
@@ -71,6 +71,7 @@ cd %{buildroot}%{tamaconfinstallpath} && mv conf/tama.cfg conf/tama.cfg.orig
 cd %{buildroot}%{tamaconfinstallpath} && mv conf/sites.cfg conf/sites.cfg.orig
 cd %{buildroot}%{tamaconfinstallpath} && mv conf/remote.cfg conf/remote.cfg.orig
 cd %{buildroot}%{tamaconfinstallpath} && mv html/base.html html/base.html.orig
+cd %{buildroot}%{tamaconfinstallpath} && mv html/base.atom html/base.atom.orig
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
@@ -83,11 +84,15 @@ cd %{buildroot}%{tamaconfinstallpath} && mv html/base.html html/base.html.orig
 %{tamaconfinstallpath}/conf/sites.cfg.orig
 %{tamaconfinstallpath}/conf/remote.cfg.orig
 %{tamaconfinstallpath}/html/base.html.orig
+%{tamaconfinstallpath}/html/base.atom.orig
 %{tamaoutputpath}
 %{tamatmppath}
 %doc doc/
 
 %changelog
+* Sat Jun 13 2010 Wakaba <w@suika.fam.cx> - 1.1.66mod1-3.suika
+- Atom support.
+
 * Sat Jun 12 2010 Wakaba <w@suika.fam.cx> - 1.1.66mod1-2.suika
 - Rebuilt.
 
