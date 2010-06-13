@@ -73,6 +73,7 @@ class Website
   def Website.method_abbr; Class_v['method_abbr']; end
   def Website.method_abbr=(abbr_hash); Class_v['method_abbr'] = abbr_hash; end
   
+  ## <http://masshy.fastwave.gr.jp/hina/release/usage.html#protocol>
   def Website.hina(str, antenna_url = "")
     raise TypeError if str.class != String || antenna_url.class != String
     
@@ -139,7 +140,8 @@ class Website
     end
     website
   end
-  
+
+  ## <http://www.urawa-reds.org/natsu/doc/LIRS.html>  
   def Website.lirs(str, antenna_url = "")
     raise TypeError if str.class != String || antenna_url.class != String
     
@@ -168,7 +170,8 @@ class Website
     end
     website
   end
-  
+
+  ## <http://kohgushi.fastwave.gr.jp/hina-doc/>
   def Website.di(str, antenna_url = "")
     raise TypeError if str.class != String || antenna_url.class != String
     
