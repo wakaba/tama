@@ -18,5 +18,8 @@ $(RPM_SPEC_DIR)/tama.spec: conf/tama.spec
 rpm: $(RPM_SPEC_DIR)/tama.spec $(RPM_SOURCE_DIR)/tama-tarball
 	$(RPMBUILD) -ba $<
 
+debug: bin/prepare-debug-env.rb bin/tama.rb
+	ruby $<
+
 ## Author: Wakaba <w@suika.fam.cx>
 ## License: Public Domain.
