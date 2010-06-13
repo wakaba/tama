@@ -1,0 +1,14 @@
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja">
+  <id><!--tama_output method="ANTENNA_URL" escape="html"--></id>
+  <link rel="self" type="application/atom+xml"
+      href="<!--tama_output method="ANTENNA_URL" type="atom" escape="html"-->"/>
+  <link rel="alternate" type="text/html"
+      href="<!--tama_output method="ANTENNA_URL" escape="html"-->"/>
+  <title>「たまてばこ」サンプルページ</title>
+  <updated><!--tama_output method="LASTMODIFIED" type="html-datetime"--></updated>
+  <generator>
+    <!--tama_output method="VERSION" type="text" escape="html"-->
+  </generator>
+
+  <!--tama_output src="sites.di" sort="yes" max="100" format="<entry><id>%url%</id><link href=\"%url%#%year%%month%%day%%hour%%min%\"/><title>%title%</title><author><name>%author%</name></author><updated>%htmldatetime%</updated></entry>"-->
+</feed>

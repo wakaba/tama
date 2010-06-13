@@ -1,6 +1,8 @@
 # 「たまてばこ」version 1.1.66
 # Copyright(C) 2000-2001 Hideki Ikemoto
 
+require 'cgi'
+
 def antenna_out_REMOTE(option, remotes)
   ret = ""
   remotes.each {|remote|
@@ -14,11 +16,35 @@ def antenna_out_LASTMODIFIED(option, remotes)
   file_time_s = file_time.to_s
   file_time.utc
   file_time_v = file_time.strftime("%Y-%m-%dT%H:%M:%SZ")
-  "Last-Modified: <time datetime=\"#{file_time_v}\">#{file_time_s}</time>"
+  if option['type'] == 'html-datetime' then
+    file_time_v
+  else
+    "Last-Modified: <time datetime=\"#{file_time_v}\">#{file_time_s}</time>"
+  end
+end
+
+def antenna_out_ANTENNA_URL(option, remotes)
+  url = $referer
+  if option['type'] == 'atom' then url += "sites.atom" end
+  if option['escape'] == 'html' then
+    CGI::escapeHTML(url)
+  else
+    url
+  end
 end
 
 def antenna_out_VERSION(option, remotes)
-  "「<a href=\"#{TAMA::Official}\">たまてばこ</a>」version #{TAMA::Version}"
+  if option['type'] == 'text' then
+    s = "「たまてばこ」version #{TAMA::Version}"
+  else
+    s = "「<a href=\"#{TAMA::Official}\">たまてばこ</a>」version #{TAMA::Version}"
+  end
+
+  if option['escape'] == 'html' then
+    CGI::escapeHTML(s)
+  else
+    s
+  end
 end
 
 def antenna_out__default(option, remotes)

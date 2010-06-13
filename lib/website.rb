@@ -386,6 +386,10 @@ class Website
         else
           "</time>"
         end
+      when "htmldatetime"
+        sprintf "%04d-%02d-%02dT%02d:%02d:%02dZ",
+            utctime.year, utctime.month, utctime.day,
+            utctime.hour, utctime.min, utctime.sec
       when "url"
 	if error == FALSE && suffix != nil then
 	  suffix =~ /^([^%]*)(.*)$/
