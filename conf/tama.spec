@@ -88,6 +88,7 @@ cd %{buildroot}%{tamaconfinstallpath} && mv html/base.atom html/base.atom.orig
 %{tamaoutputpath}
 %{tamatmppath}
 %doc doc/
+%doc *.ja
 
 %changelog
 * Sat Jun 13 2010 Wakaba <w@suika.fam.cx> - 1.1.66mod1-3.suika
