@@ -64,7 +64,7 @@ class Website
     if @expires != 0 then
       @expires
     elsif @lastdetected != 0 then
-      @lastdetected + 28800
+      @lastdetected + $export_lifetime
     else
       0
     end

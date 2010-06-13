@@ -70,6 +70,7 @@ end
 
 verbose("Current directory: #{Dir::pwd}\n")
 
+$export_lifetime = 28800
 $remote_cfg_path = "#{$confdir}/conf/remote.cfg"
 
 $tama_cfg_path = "#{$confdir}/conf/tama.cfg"
